@@ -10,8 +10,14 @@
 
 ## Theme installation
 
+Install dependencies
 ```shell
 $ composer install
+```
+
+Install assets dependencies
+```shell
+$ yarn
 ```
 
 ## Theme structure
@@ -32,6 +38,7 @@ themes/your-theme-name/   # → Root of your Sage based theme
 ├── package.json          # → Node.js dependencies and scripts
 ├── resources/            # → Theme assets and templates
 │   ├── assets/           # → Front-end assets
+│   │   ├── config.json   # → Settings for compiled assets
 │   │   ├── fonts/        # → Theme fonts
 │   │   ├── images/       # → Theme images
 │   │   ├── scripts/      # → Theme JS
@@ -48,11 +55,26 @@ themes/your-theme-name/   # → Root of your Sage based theme
 
 ### Build commands
 
-* `yarn start` — Compile assets when file changes are made, start Browsersync session
+* `yarn hot` — Compile assets when file changes are made with hot reload
+* `yarn watch` — Compile assets when file changes are made
 * `yarn build` — Compile and optimize the files in your assets directory
 * `yarn build:production` — Compile assets for production
+
+### Enable HTTPS on hot reload mode
+
+Define your certificates paths by setting `https.key` and `https.cert` in `resources/assets/config.json`
+
+```json
+{
+  "https": {
+      "key": "path_to_key",
+      "cert": "path_to_cert"
+  }
+}
+```
 
 ## Documentation
 
 * [Sage documentation](https://roots.io/sage/docs/)
 * [Controller documentation](https://github.com/soberwp/controller#usage)
+* [Vue CLI](https://cli.vuejs.org/config/#global-cli-config)
