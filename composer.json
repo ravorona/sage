@@ -1,6 +1,6 @@
 {
     "name": "ravorona/sage",
-    "description": "Wordpress starter theme based on roots/sage starter theme",
+    "description": "Wordpress theme based on Sage starter theme with Vue CLI Bundler",
     "type": "wordpress-theme",
     "license": "MIT",
     "authors": [
