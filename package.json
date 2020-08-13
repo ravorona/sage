@@ -1,10 +1,9 @@
 {
   "name": "sage",
-  "version": "0.1.0",
-  "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve resources/assets/scripts/application.ts",
-    "build": "vue-cli-service build resources/assets/scripts/application.ts --mode development --target app --modern",
+    "hot": "vue-cli-service serve resources/assets/scripts/application.ts",
+    "watch": "vue-cli-service build resources/assets/scripts/application.ts --mode development --watch",
+    "build": "vue-cli-service build resources/assets/scripts/application.ts --mode development",
     "build:production": "vue-cli-service build resources/assets/scripts/application.ts --mode production --target app --modern",
     "lint": "vue-cli-service lint"
   },

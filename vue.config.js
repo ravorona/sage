@@ -1,20 +1,50 @@
 const path = require('path')
+const fs = require('fs')
 const WebpackNotifier = require('webpack-notifier')
-
+const config = require('./resources/assets/config')
 const isProduction = process.env.NODE_ENV === 'production'
-const publicPath = '/theme/sage/dist/'
-const namespace = 'sage'
-const appUrl = 'https://0.0.0.0:80'
+const host = config.devDomain || 'localhost'
+const port = config.devPort || 8080
+
+let devServerConfiguration = {
+    host: host,
+    port: port,
+    public: `${host}:${port}`,
+    writeToDisk: true,
+    disableHostCheck: true,
+    overlay: {
+        warnings: true,
+        errors: true
+    },
+    watchOptions: {
+        poll: true,
+        ignored: [
+            /node_modules/,
+            /vendor/,
+            /public/,
+            /dist/,
+            /.php$/,
+            /.twig$/,
+            /.htm?l$/
+        ]
+    }
+}
+
+if (config.https && config.https.key && config.https.cert) {
+    devServerConfiguration.https = true
+    devServerConfiguration.key = fs.readFileSync(config.https.key)
+    devServerConfiguration.cert = fs.readFileSync(config.https.cert)
+}
 
 module.exports = {
     lintOnSave: !isProduction,
-    publicPath: publicPath,
+    publicPath: `${config.publicPath}/dist`,
     runtimeCompiler: true,
     crossorigin: 'use-credentials',
     filenameHashing: isProduction,
     css: { sourceMap: true },
     pwa: {
-        name: namespace,
+        name: config.namespace,
         manifestCrossorigin: 'use-credentials',
         manifestOptions: {
             icons: [
@@ -39,38 +69,13 @@ module.exports = {
             msTileImage: 'icons/msapplication-icon-144x144.png'
         }
     },
-    devServer: {
-        host: '0.0.0.0',
-        disableHostCheck: true,
-        overlay: {
-            warnings: true,
-            errors: true
-        },
-        watchOptions: {
-            poll: true,
-            ignored: [
-                /node_modules/,
-                /vendor/,
-                /public/,
-                /dist/,
-                /.php$/,
-                /.twig$/,
-                /.htm?l$/
-            ]
-        },
-        proxy: {
-            '^': {
-                target: appUrl,
-                changeOrigin: false
-            }
-        }
-    },
+    devServer: devServerConfiguration,
     configureWebpack: config => {
         config.devtool = 'cheap-source-map'
         config.plugins.push(
             new WebpackNotifier(
                 {
-                    title: namespace.toUpperCase(),
+                    title: 'Theme Bundler',
                     alwaysNotify: true
                 }
             )
