@@ -10,14 +10,17 @@
 
 ## Theme installation
 
-Install dependencies
+Install Sage using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
+
 ```shell
-$ composer install
+# @ app/themes/ or wp-content/themes/
+$ composer create-project ravorona/sage your-theme-name
 ```
 
-Install assets dependencies
+To install the latest development version of Sage, add `dev-master` to the end of the command:
+
 ```shell
-$ yarn
+$ composer create-project ravorona/sage your-theme-name dev-master
 ```
 
 ## Theme structure
@@ -39,6 +42,7 @@ themes/your-theme-name/   # → Root of your Sage based theme
 ├── resources/            # → Theme assets and templates
 │   ├── assets/           # → Front-end assets
 │   │   ├── config.json   # → Settings for compiled assets
+│   │   ├── config.json   # → Settings for pwa
 │   │   ├── fonts/        # → Theme fonts
 │   │   ├── images/       # → Theme images
 │   │   ├── scripts/      # → Theme JS
@@ -53,12 +57,11 @@ themes/your-theme-name/   # → Root of your Sage based theme
 └── vendor/               # → Composer packages (never edit)
 ```
 
-### Build commands
+## Theme development
 
-* `yarn hot` — Compile assets when file changes are made with hot reload
-* `yarn watch` — Compile assets when file changes are made
-* `yarn build` — Compile and optimize the files in your assets directory
-* `yarn build:production` — Compile assets for production
+* Run `yarn` from the theme directory to install dependencies
+* Update common configuration in `resources/assets/config.json`
+* Update `vue.config.js` for fine tuning
 
 ### Enable HTTPS on hot reload mode
 
@@ -72,6 +75,13 @@ Define your certificates paths by setting `https.key` and `https.cert` in `resou
   }
 }
 ```
+
+### Build commands
+
+* `yarn hot` — Compile assets when file changes are made with hot reload
+* `yarn watch` — Compile assets when file changes are made
+* `yarn build` — Compile and optimize the files in your assets directory
+* `yarn build:production` — Compile assets for production
 
 ## Documentation
 
