@@ -1,0 +1,47 @@
+.row {
+    @include fit-container;
+    display: flex;
+    flex-wrap: wrap;
+
+    &-items-center {
+        justify-content: center;
+    }
+
+    &-items-middle {
+        align-items: center;
+    }
+
+    &-items-bottom {
+        align-items: flex-end;
+    }
+}
+
+[class^='col'] {
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.col {
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    @for $i from 1 to ($grid-count + 1) {
+        &-#{$i} {
+            width: percentage($i / $grid-count);
+            max-width: percentage($i / $grid-count);
+        }
+    }
+
+    @each $name, $breakpoint in $theme-breakpoints {
+        @media (--#{$name}) {
+            @for $i from 1 to ($grid-count + 1) {
+                &-#{$name}-#{$i} {
+                    width: percentage($i / $grid-count);
+                    max-width: percentage($i / $grid-count);
+                }
+            }
+        }
+    }
+}

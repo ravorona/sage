@@ -1,0 +1,39 @@
+/**
+ * Critical stylesheet
+ */
+
+/**
+ * Config
+ */
+@import './config/colors';
+@import './config/fonts';
+@import './config/selectors';
+@import './config/variables';
+@import './config/media-queries';
+
+/**
+ * Helpers
+ */
+@import './helpers/functions';
+@import './helpers/mixins';
+@import './helpers/svg';
+
+/**
+ * Sanitize
+ */
+@import 'sanitize.css';
+
+/**
+ * Utils
+ */
+@import './utils/reset';
+
+/**
+ * Components
+ */
+@import './components/header';
+
+/**
+ * Layout
+ */
+@import './layout/base';

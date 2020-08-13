@@ -1,0 +1,51 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "strict": true,
+        "jsx": "preserve",
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "baseUrl": ".",
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "types": [
+            "webpack-env"
+        ],
+        "paths": {
+            "~/*": [
+                "resources/assets/*"
+            ],
+            "~script": [
+                "resources/assets/scripts"
+            ],
+            "~style": [
+                "resources/assets/styles"
+            ]
+        },
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ]
+    },
+    "include": [
+        "resources/assets/**/*.ts",
+        "resources/assets/**/*.tsx",
+        "resources/assets/**/*.vue"
+    ],
+    "exclude": [
+        "node_modules",
+        "vendor"
+    ],
+    "files": [
+        "resources/assets/types/shims-vue.d.ts"
+    ]
+}

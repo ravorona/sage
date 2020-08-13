@@ -1,0 +1,38 @@
+/**
+ * String replace
+ * from https://gist.github.com/jonathantneal/d0460e5c2d5d7f9bc5e6
+ */
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+/**
+ * Font size generator
+ */
+@function prem($pxVal, $base: $baseFontSize) {
+    @return #{$pxVal / $base}rem;
+}
+
+@function pem($fontSize, $letterSpacing: $baseLetterSpacing) {
+    @return #{$letterSpacing / $fontSize}em;
+}
+
+/**
+ * Spacer generator
+ */
+@function spacer ($size: 1) {
+    @return #{$baseSpacer * $size}px;
+}
+
+/**
+ * Get color
+ */
+@function col($color) {
+    @return map-get($theme-colors, '#{$color}');
+}

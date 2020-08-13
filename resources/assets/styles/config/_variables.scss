@@ -1,0 +1,42 @@
+/**
+ * Base variables
+ */
+$baseFontSize: 10 !default;
+$baseSpacer: 5 !default;
+$baseLetterSpacing: 1 !default;
+
+/**
+ * Theme breakpoints
+ */
+$breakpoint-xsmall:   360px;
+$breakpoint-small:    640px;
+$breakpoint-medium:   768px;
+$breakpoint-large:    1024px;
+$breakpoint-xlarge:   1280px;
+
+$theme-breakpoints: (
+    'xs': $breakpoint-xsmall,
+    'sm': $breakpoint-small,
+    'md': $breakpoint-medium,
+    'lg': $breakpoint-large,
+    'xl': $breakpoint-xlarge
+);
+
+/**
+ * Grid
+ */
+$grid-count: 12;
+
+/**
+ * CSS variables
+ */
+:root {
+    --font-karbon: #{$font-karbon};
+    --font-default: var(--font-karbon);
+
+    --gutter: calc(#{$baseSpacer}px * 2);
+    --container: 1440px;
+    --container-width: calc(#{percentage(1)} - (var(--gutter) * 2));
+
+    --color-default: black;
+}

@@ -1,0 +1,14 @@
+/**
+ * Media queries
+ */
+
+// Dimension breakpoints
+@each $name, $breakpoint in $theme-breakpoints {
+    @custom-media --#{$name} (min-width: #{$breakpoint});
+}
+
+// Landscape mode
+@custom-media --landscape (orientation: landscape);
+
+// Portrait mode
+@custom-media --portrait (orientation: portrait);
