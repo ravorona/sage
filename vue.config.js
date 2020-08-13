@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const WebpackNotifier = require('webpack-notifier')
 const config = require('./resources/assets/config')
+const webmanifest = require('./resources/assets/webmanifest')
 const isProduction = process.env.NODE_ENV === 'production'
 const host = config.devDomain || 'localhost'
 const port = config.devPort || 8080
@@ -43,32 +44,7 @@ module.exports = {
     crossorigin: 'use-credentials',
     filenameHashing: isProduction,
     css: { sourceMap: true },
-    pwa: {
-        name: config.namespace,
-        manifestCrossorigin: 'use-credentials',
-        manifestOptions: {
-            icons: [
-                {
-                    src: 'icons/android-chrome-192x192.png',
-                    sizes: '192x192',
-                    type: 'image/png'
-                },
-                {
-                    src: 'icons/android-chrome-512x512.png',
-                    sizes: '512x512',
-                    type: 'image/png'
-                }
-            ]
-        },
-        // For meta tags
-        iconPaths: {
-            favicon32: 'icons/favicon-32x32.png',
-            favicon16: 'icons/favicon-16x16.png',
-            appleTouchIcon: 'icons/apple-touch-icon-152x152.png',
-            maskIcon: 'icons/safari-pinned-tab.svg',
-            msTileImage: 'icons/msapplication-icon-144x144.png'
-        }
-    },
+    pwa: webmanifest,
     devServer: devServerConfiguration,
     configureWebpack: config => {
         config.devtool = 'cheap-source-map'

@@ -42,6 +42,7 @@ themes/your-theme-name/   # → Root of your Sage based theme
 ├── resources/            # → Theme assets and templates
 │   ├── assets/           # → Front-end assets
 │   │   ├── config.json   # → Settings for compiled assets
+│   │   ├── config.json   # → Settings for pwa
 │   │   ├── fonts/        # → Theme fonts
 │   │   ├── images/       # → Theme images
 │   │   ├── scripts/      # → Theme JS
