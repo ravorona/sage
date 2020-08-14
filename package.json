@@ -42,6 +42,9 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "stylelint": "^13.6.1",
+    "svg-sprite-loader": "^5.0.0",
+    "svg-transform-loader": "^2.0.13",
+    "svgo-loader": "^2.2.1",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11",
     "webpack-notifier": "^1.8.0"

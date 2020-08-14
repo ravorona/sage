@@ -1,5 +1,6 @@
 import '~/styles/application.scss'
 import '~/scripts/utils/register-service-worker'
+import '~/scripts/utils/register-svg'
 
 import Main from '~/scripts/components/Main'
 
