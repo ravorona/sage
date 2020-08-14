@@ -1,6 +1,6 @@
 # Sage - Wordpress starter theme
 
-[Sage](https://roots.io/sage/) with [Vue CLI](https://cli.vuejs.org/)
+[Sage](https://roots.io/sage/) using [Vue CLI](https://cli.vuejs.org/)
 
 ## Requirements
 
