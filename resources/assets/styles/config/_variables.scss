@@ -2,7 +2,7 @@
  * Base variables
  */
 $baseFontSize: 10 !default;
-$baseSpacer: 5 !default;
+$baseSpacer: 10 !default;
 $baseLetterSpacing: 1 !default;
 
 /**
@@ -22,6 +22,10 @@ $theme-breakpoints: (
     'xl': $breakpoint-xlarge
 );
 
+$theme-eases: (
+    'default': cubic-bezier(.33, .34, .19, 1)
+);
+
 /**
  * Grid
  */
@@ -31,12 +35,20 @@ $grid-count: 12;
  * CSS variables
  */
 :root {
-    --font-karbon: #{$font-karbon};
-    --font-default: var(--font-karbon);
+    --font-proxima-nova: #{$font-proxima-nova};
+    --font-default: var(--font-proxima-nova);
+
+    --grid: #{$grid-count};
 
     --gutter: calc(#{$baseSpacer}px * 2);
     --container: 1440px;
     --container-width: calc(#{percentage(1)} - (var(--gutter) * 2));
 
     --color-default: black;
+}
+
+@media (--md) {
+    :root {
+        --gutter: calc(#{$baseSpacer}px * 3);
+    }
 }

@@ -136,7 +136,9 @@ module.exports = {
 
         config.resolve
             .alias
-            .set('~', path.resolve(__dirname, 'resources/assets'))
+            .set('@', path.resolve(__dirname, 'resources/assets'))
+            .set('@script', path.resolve(__dirname, 'resources/assets/scripts'))
+            .set('@style', path.resolve(__dirname, 'resources/assets/styles'))
             .end()
 
         svgRule.uses.clear()

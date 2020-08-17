@@ -10,6 +10,7 @@
 @import './config/selectors';
 @import './config/variables';
 @import './config/media-queries';
+@import './config/ease';
 
 /**
  * Helpers
@@ -21,10 +22,10 @@
 /**
  * Components
  */
+@import './components/guide';
 @import './components/footer';
 
 /**
  * Layout
  */
-@import './layout/grid';
 @import './layout/homepage';

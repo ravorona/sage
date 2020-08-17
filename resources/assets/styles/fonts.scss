@@ -6,6 +6,7 @@
 @import './config/selectors';
 @import './config/variables';
 @import './config/media-queries';
+@import './config/ease';
 
 /**
  * Helpers
@@ -17,4 +18,4 @@
 /**
  * Fonts
  */
-@import './fonts/karbon';
+@import './fonts/proxima-nova';
