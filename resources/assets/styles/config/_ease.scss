@@ -1,0 +1,9 @@
+/**
+ * Ease
+ */
+
+:root {
+    @each $name, $ease in $theme-eases {
+        --ease-#{$name}: $ease;
+    }
+}

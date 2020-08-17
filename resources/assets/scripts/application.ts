@@ -1,8 +1,11 @@
-import '~/styles/application.scss'
-import '~/scripts/utils/register-service-worker'
-import '~/scripts/utils/register-svg'
+import '@style/fonts.scss'
+import '@style/critical.scss'
+import '@style/application.scss'
 
-import Main from '~/scripts/components/Main'
+import '@script/utils/register-service-worker'
+import '@script/utils/register-svg'
+
+import Main from '@script/components/Main'
 
 /**
  * Application scripts

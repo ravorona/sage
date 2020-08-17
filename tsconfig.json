@@ -19,14 +19,14 @@
             "webpack-env"
         ],
         "paths": {
-            "~/*": [
+            "@/*": [
                 "resources/assets/*"
             ],
-            "~script": [
-                "resources/assets/scripts"
+            "@script/*": [
+                "resources/assets/scripts/*"
             ],
-            "~style": [
-                "resources/assets/styles"
+            "@style/*": [
+                "resources/assets/styles/*"
             ]
         },
         "lib": [

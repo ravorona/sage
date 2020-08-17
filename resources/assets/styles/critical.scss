@@ -10,6 +10,7 @@
 @import './config/selectors';
 @import './config/variables';
 @import './config/media-queries';
+@import './config/ease';
 
 /**
  * Helpers
@@ -21,7 +22,7 @@
 /**
  * Sanitize
  */
-@import 'sanitize.css';
+@import '~sanitize.css';
 
 /**
  * Utils

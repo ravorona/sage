@@ -1,0 +1,39 @@
+/**
+ * Guide
+ */
+.guide {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 1s opacity var(--ease-default);
+
+    &-wrapper {
+        display: grid;
+        grid-template-columns: repeat(var(--grid), 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: var(--gutter);
+        grid-row-gap: 0;
+        height: percentage(1);
+    }
+
+    &-element {
+        background: rgba(#ed6a31, .1);
+        border-left: 1px solid #d00;
+        border-right: 1px solid #d00;
+    }
+
+    .container {
+        height: percentage(1);
+    }
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+}
