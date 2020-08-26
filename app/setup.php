@@ -69,8 +69,15 @@ add_action('after_setup_theme', function () {
      * Use main stylesheet for visual editor
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
-    add_editor_style(asset_path('styles/main.css'));
+    add_editor_style(asset_path('editor.css'));
 }, 20);
+
+/**
+ * Enqueue block editor assets
+ */
+add_action('enqueue_block_editor_assets', function () {
+    wp_enqueue_style('sage/block-editor', asset_path('block-editor.css'));
+});
 
 /**
  * Register sidebars

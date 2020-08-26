@@ -4,6 +4,7 @@
 const path = require('path')
 const fs = require('fs')
 const WebpackNotifier = require('webpack-notifier')
+const WebpackManifestPlugin = require('webpack-manifest-plugin')
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 
 /**
@@ -16,6 +17,7 @@ const webmanifest = require('./resources/assets/webmanifest')
  * Configurations
  */
 const isProduction = process.env.NODE_ENV === 'production'
+const publicPath = `${config.publicPath}/dist/`
 const host = config.devDomain || 'localhost'
 const port = config.devPort || 8080
 const devServerConfiguration = {
@@ -55,8 +57,18 @@ if (config.https && config.https.key && config.https.cert) {
  * Export vue configurations
  */
 module.exports = {
+    pages: {
+        application: {
+            entry: 'resources/assets/scripts/application.ts',
+            filename: '../resources/views/layouts/app.blade.php',
+            template: 'resources/views/layouts/app-source.blade.php'
+        },
+        editor: 'resources/assets/scripts/editor.ts',
+        critical: 'resources/assets/scripts/critical.ts',
+        'block-editor': 'resources/assets/scripts/block-editor.ts'
+    },
     lintOnSave: !isProduction,
-    publicPath: `${config.publicPath}/dist`,
+    publicPath: publicPath,
     runtimeCompiler: true,
     crossorigin: 'use-credentials',
     filenameHashing: isProduction,
@@ -84,6 +96,36 @@ module.exports = {
                     contentImage: path.resolve('./public/icons/apple-touch-icon-120x120.png'),
                     sound: 'Purr',
                     alwaysNotify: true
+                }
+            )
+        )
+
+        config.plugins.push(
+            new WebpackManifestPlugin(
+                {
+                    writeToFileEmit: true,
+                    publicPath: publicPath,
+                    fileName: 'assets.json',
+                    generate: (seed, files) => {
+                        return files.reduce(
+                            (manifest, { name, path, isInitial }) => {
+                                if (!isInitial) {
+                                    const fileInfo = path.split('.')
+
+                                    name = fileInfo[0] + '.' + fileInfo[fileInfo.length - 1]
+                                }
+
+                                return (
+                                    {
+                                        ...manifest,
+                                        [name]: path
+                                    }
+                                )
+                            },
+                            seed
+                        )
+                    },
+                    filter: file => file.path.match(/.*.(css|js|ttf|woff2?)$/)
                 }
             )
         )
@@ -124,15 +166,6 @@ module.exports = {
                     return options
                 })
         }
-
-        config
-            .plugin('html')
-            .tap(args => {
-                args[0].filename = '../resources/views/layouts/app.blade.php'
-                args[0].template = 'resources/views/layouts/app-source.blade.php'
-
-                return args
-            })
 
         config.resolve
             .alias
