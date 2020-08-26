@@ -19,7 +19,6 @@
             "removeFill": true
         },
         "postcss-selector-matches": {},
-        "postcss-css-variables": {},
         "postcss-calc": {
             "precision": 2
         },
