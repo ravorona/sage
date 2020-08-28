@@ -3,9 +3,9 @@
 namespace App;
 
 use Roots\Sage\Container;
-use Roots\Sage\Assets\JsonManifest;
 use Roots\Sage\Template\Blade;
 use Roots\Sage\Template\BladeProvider;
+use App\Assets\ExtendedJsonManifest;
 
 /**
  * Theme assets
@@ -76,7 +76,9 @@ add_action('after_setup_theme', function () {
  * Enqueue block editor assets
  */
 add_action('enqueue_block_editor_assets', function () {
-    wp_enqueue_style('sage/block-editor', asset_path('block-editor.css'));
+    if (!sage('assets')->is('hot')) {
+        wp_enqueue_style('sage/block-editor', asset_path('block-editor.css'));
+    }
 });
 
 /**
@@ -112,10 +114,10 @@ add_action('the_post', function ($post) {
  */
 add_action('after_setup_theme', function () {
     /**
-     * Add JsonManifest to Sage container
+     * Add ExtendedJsonManifest to Sage container
      */
     sage()->singleton('sage.assets', function () {
-        return new JsonManifest(config('assets.manifest'), config('assets.uri'));
+        return new ExtendedJsonManifest(config('assets.manifest'), config('assets.uri'));
     });
 
     /**
