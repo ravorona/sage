@@ -1,10 +1,11 @@
 {
   "name": "sage",
   "scripts": {
-    "hot": "vue-cli-service serve resources/assets/scripts/application.ts",
-    "watch": "vue-cli-service build resources/assets/scripts/application.ts --mode development --watch",
-    "build": "vue-cli-service build resources/assets/scripts/application.ts --mode development",
-    "build:production": "vue-cli-service build resources/assets/scripts/application.ts --mode production --target app --modern",
+    "compile": "vue-cli-service build",
+    "hot": "vue-cli-service serve",
+    "watch": "yarn compile --mode development --watch",
+    "build": "yarn compile --mode development",
+    "build:production": "yarn compile --mode production --target app --modern",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -34,7 +35,6 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "postcss-calc": "^7.0.3",
-    "postcss-css-variables": "^0.17.0",
     "postcss-custom-media": "^7.0.8",
     "postcss-custom-selectors": "^5.1.2",
     "postcss-inline-svg": "^4.1.0",
@@ -48,6 +48,7 @@
     "svgo-loader": "^2.2.1",
     "typescript": "~3.9.3",
     "vue-template-compiler": "^2.6.11",
+    "webpack-manifest-plugin": "^2.2.0",
     "webpack-notifier": "^1.8.0"
   },
   "typings": "resources/assets/types/index.d.ts"

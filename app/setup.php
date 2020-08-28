@@ -3,9 +3,9 @@
 namespace App;
 
 use Roots\Sage\Container;
-use Roots\Sage\Assets\JsonManifest;
 use Roots\Sage\Template\Blade;
 use Roots\Sage\Template\BladeProvider;
+use App\Assets\ExtendedJsonManifest;
 
 /**
  * Theme assets
@@ -69,8 +69,17 @@ add_action('after_setup_theme', function () {
      * Use main stylesheet for visual editor
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
-    add_editor_style(asset_path('styles/main.css'));
+    add_editor_style(asset_path('editor.css'));
 }, 20);
+
+/**
+ * Enqueue block editor assets
+ */
+add_action('enqueue_block_editor_assets', function () {
+    if (!sage('assets')->is('hot')) {
+        wp_enqueue_style('sage/block-editor', asset_path('block-editor.css'));
+    }
+});
 
 /**
  * Register sidebars
@@ -105,10 +114,10 @@ add_action('the_post', function ($post) {
  */
 add_action('after_setup_theme', function () {
     /**
-     * Add JsonManifest to Sage container
+     * Add ExtendedJsonManifest to Sage container
      */
     sage()->singleton('sage.assets', function () {
-        return new JsonManifest(config('assets.manifest'), config('assets.uri'));
+        return new ExtendedJsonManifest(config('assets.manifest'), config('assets.uri'));
     });
 
     /**
