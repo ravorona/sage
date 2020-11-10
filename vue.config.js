@@ -10,13 +10,15 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 /**
  * Configuration files
  */
-const config = require('./resources/assets/config')
+const isProduction = process.env.NODE_ENV === 'production'
+const configPath = isProduction ? './resources/assets/config.prod' : './resources/assets/config'
+const config = require(configPath)
 const webmanifest = require('./resources/assets/webmanifest')
 
 /**
  * Configurations
  */
-const isProduction = process.env.NODE_ENV === 'production'
+
 const publicPath = `${config.publicPath}/dist/`
 const host = config.devDomain || 'localhost'
 const port = config.devPort || 8080
