@@ -82,15 +82,14 @@ module.exports = {
             test: /\.(svg)(\?.*)?$/,
             loaderOptions: {
                 extract: true,
-                spriteFilename: 'svg/sprite.[hash:8].svg'
+                spriteFilename: 'svg/sprite.svg'
             },
             /*
              * @see https://github.com/kisenka/svg-sprite-loader#configuration
              */
             pluginOptions: {
                 plainSprite: true,
-                extract: true,
-                symbolId: 'icon-[name]'
+                extract: true
             }
         }
     },
