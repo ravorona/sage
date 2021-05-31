@@ -4,7 +4,7 @@
 const path = require('path')
 const fs = require('fs')
 const WebpackNotifier = require('webpack-notifier')
-const WebpackManifestPlugin = require('webpack-manifest-plugin')
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 
 /**
@@ -132,6 +132,7 @@ module.exports = {
             )
         )
 
+        /*
         config.module.rules.push({
             test: /\.svg$/,
             use: [
@@ -155,9 +156,10 @@ module.exports = {
                     }
                 }]
         })
+        */
     },
     chainWebpack: config => {
-        const svgRule = config.module.rule('svg')
+        // const svgRule = config.module.rule('svg')
 
         if (config.plugins.has('prefetch')) {
             config.plugin('prefetch')
@@ -176,6 +178,44 @@ module.exports = {
             .set('@style', path.resolve(__dirname, 'resources/assets/styles'))
             .end()
 
-        svgRule.uses.clear()
+        config.module
+              .rule('svg')
+              .use('svg-sprite-loader')
+              .loader(
+                  'svg-sprite-loader',
+                  {
+                      options: {
+                          extract: true,
+                          spriteFilename: 'svg/sprite.svg',
+                          symbolId: 'icon-[name]'
+                      }
+                  }
+              )
+
+        /*
+        config.module
+            .rule('svg')
+            .use('svg-sprite-loader')
+            .loader(
+                'svg-sprite-loader',
+                {
+                    options: {
+                        extract: true,
+                        spriteFilename: 'svg/sprite.svg',
+                        symbolId: 'icon-[name]'
+                    }
+                }
+            )
+            .loader(
+                'svgo-loader', {
+                options: {
+                    plugins: [
+                        { removeTitle: true },
+                        { convertColors: { shorthex: false } },
+                        { convertPathData: false }
+                    ]
+                }
+            })
+        */
     }
 }
