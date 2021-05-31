@@ -32,3 +32,9 @@ body {
     padding-right: var(--gutter);
     margin: 0 auto;
 }
+
+.close {
+    width: 24px;
+    height: 24px;
+    background: svg-inline(close) center center no-repeat;
+}
