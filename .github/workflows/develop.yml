@@ -39,7 +39,7 @@ jobs:
         run: composer test
 
   assets:
-    name: Sage (PHP ${{ matrix.php-versions }})
+    name: Assets (Node ${{ matrix.node-versions }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -59,9 +59,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-versions }}
-
-      - name: Vue command line
-        run: yarn add global @vue/cli
 
       - name: Assets review
         run: yarn lint
