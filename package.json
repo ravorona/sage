@@ -1,12 +1,12 @@
 {
   "name": "sage",
   "scripts": {
+    "build": "yarn compile --mode development",
+    "lint": "vue-cli-service lint",
+    "build:production": "yarn compile --mode production --target app --modern",
     "compile": "vue-cli-service build",
     "hot": "vue-cli-service serve",
-    "watch": "yarn compile --mode development --watch",
-    "build": "yarn compile --mode development",
-    "build:production": "yarn compile --mode production --target app --modern",
-    "lint": "vue-cli-service lint"
+    "watch": "yarn compile --mode development --watch"
   },
   "dependencies": {
     "core-js": "^3.13.1",
@@ -46,8 +46,10 @@
     "stylelint": "^13.13.0",
     "stylelint-config-standard": "^22.0.0",
     "svg-transform-loader": "^2.0.13",
+    "svgo": "^1.1.0",
     "svgo-loader": "^3.0.0",
     "typescript": "^4.2.4",
+    "vue-cli-plugin-svg-sprite": "~1.1.0",
     "vue-template-compiler": "^2.6.11",
     "webpack-manifest-plugin": "^3.1.1",
     "webpack-notifier": "^1.13.0"
