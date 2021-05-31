@@ -5,12 +5,12 @@ Vue.config.productionTip = false
 export default class Main {
     readonly namespace!: string
 
-    public constructor (namespace: string = 'sage') {
+    public constructor(namespace: string = 'sage') {
         this.namespace = namespace.toLowerCase().replace(' ', '-')
         console.log('%s created', this.namespace)
     }
 
-    public start (): void {
+    public start(): void {
         console.log('%s started', this.namespace)
     }
 }

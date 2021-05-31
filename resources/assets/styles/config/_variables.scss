@@ -37,13 +37,10 @@ $grid-count: 12;
 :root {
     --font-proxima-nova: #{$font-proxima-nova};
     --font-default: var(--font-proxima-nova);
-
     --grid: #{$grid-count};
-
     --gutter: calc(#{$baseSpacer}px * 2);
     --container: 1440px;
     --container-width: calc(#{percentage(1)} - (var(--gutter) * 2));
-
     --color-default: black;
 }
 
