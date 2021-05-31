@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2021 - яαvoroηα
+ *
+ * @project Sage
+ * @file register-service-worker.ts
+ * @author ravorona
+ */
+
 import { register } from 'register-service-worker'
 
 if (process.env.NODE_ENV === 'production') {

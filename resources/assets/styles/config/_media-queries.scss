@@ -1,6 +1,11 @@
-/**
- * Media queries
+/*!
+ * Copyright © 2021 - яαvoroηα
+ *
+ * @project Sage
+ * @file _media-queries.scss
+ * @author ravorona
  */
+
 
 // Dimension breakpoints
 @each $name, $breakpoint in $theme-breakpoints {

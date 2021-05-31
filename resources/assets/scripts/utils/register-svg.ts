@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2021 - яαvoroηα
+ *
+ * @project Sage
+ * @file register-svg.ts
+ * @author ravorona
+ */
+
 const requireSvg = (
     (): void => {
         const loadSvg = (r: any): void => {
