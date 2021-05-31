@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2021 - яαvoroηα
+ *
+ * @project Sage
+ * @file Main.ts
+ * @author ravorona
+ */
+
 import Vue from 'vue'
 
 Vue.config.productionTip = false

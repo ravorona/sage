@@ -1,6 +1,6 @@
 {
   "name": "sage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "build": "yarn compile --mode development",
     "lint:js": "eslint resources/assets --ext \".js,.ts,.vue\"",
@@ -21,7 +21,6 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^2.3.0",
     "@ravorona/eslint-config": "^2.0.0",
     "@ravorona/eslint-config-typescript": "^2.0.0",
     "@ravorona/stylelint-config": "^2.0.0",

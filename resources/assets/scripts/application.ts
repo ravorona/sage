@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2021 - яαvoroηα
+ *
+ * @project Sage
+ * @file application.ts
+ * @author ravorona
+ */
+
 import '@style/fonts.scss'
 import '@style/critical.scss'
 import '@style/application.scss'

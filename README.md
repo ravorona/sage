@@ -1,6 +1,10 @@
-# Sage - Wordpress starter theme
+![Development](https://github.com/ravorona/sage/actions/workflows/develop.yml/badge.svg) ![Release](https://github.com/ravorona/sage/actions/workflows/publish.yml/badge.svg)
 
-[Sage](https://roots.io/sage/) using [Vue CLI](https://cli.vuejs.org/)
+# Wordpress starter theme
+
+* Based on [Sage](https://roots.io/sage/) version [9.0.9](https://github.com/roots/sage/releases/tag/9.0.9)
+* Using [Vue CLI](https://cli.vuejs.org/)
+
 
 ## Requirements
 
