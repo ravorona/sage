@@ -21,7 +21,6 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^2.3.0",
     "@ravorona/eslint-config": "^2.0.0",
     "@ravorona/eslint-config-typescript": "^2.0.0",
     "@ravorona/stylelint-config": "^2.0.0",
