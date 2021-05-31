@@ -1,5 +1,6 @@
 {
   "name": "sage",
+  "version": "1.0.0",
   "scripts": {
     "build": "yarn compile --mode development",
     "lint:js": "eslint resources/assets --ext \".js,.ts,.vue\"",
