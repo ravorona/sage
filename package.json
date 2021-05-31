@@ -2,7 +2,9 @@
   "name": "sage",
   "scripts": {
     "build": "yarn compile --mode development",
-    "lint": "vue-cli-service lint",
+    "lint:js": "vue-cli-service lint resources/assets --ext \".js,.ts,.vue\"",
+    "lint:style": "stylelint \"**/*.{vue,scss,css}\" --ignore-path .gitignore",
+    "lint": "yarn lint:js && yarn lint:style",
     "build:production": "yarn compile --mode production --target app --modern",
     "compile": "vue-cli-service build",
     "hot": "vue-cli-service serve",
