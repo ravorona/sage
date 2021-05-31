@@ -2,19 +2,11 @@
     "ident": "postcss",
     "sourceMap": true,
     "plugins": {
-        "@fullhuman/postcss-purgecss": {
-            "content": [
-                "resources/**/*.blade.php",
-                "resources/**/*.vue",
-                "resources/**/*.ts",
-                "resources/**/*.js"
-            ]
-        },
         "autoprefixer":  {},
         "postcss-custom-selectors": {},
         "postcss-custom-media": {},
         "postcss-inline-svg": {
-            "paths": [ "./svg" ],
+            "paths": [ "./resources/assets/svg" ],
             "removeStroke": true,
             "removeFill": true
         },
