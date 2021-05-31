@@ -21,4 +21,3 @@ class ExtendedJsonManifest extends JsonManifest
         return isset($this->manifest[$state]) && $this->manifest[$state];
     }
 }
-

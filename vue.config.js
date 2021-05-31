@@ -4,8 +4,7 @@
 const path = require('path')
 const fs = require('fs')
 const WebpackNotifier = require('webpack-notifier')
-const WebpackManifestPlugin = require('webpack-manifest-plugin')
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 
 /**
  * Configuration files
@@ -77,19 +76,26 @@ module.exports = {
     css: { sourceMap: true },
     pwa: webmanifest,
     devServer: devServerConfiguration,
+    pluginOptions: {
+        svgSprite: {
+            dir: 'resources/assets/svg',
+            test: /\.(svg)(\?.*)?$/,
+            loaderOptions: {
+                extract: true,
+                spriteFilename: 'svg/sprite.[hash:8].svg'
+            },
+            /*
+             * @see https://github.com/kisenka/svg-sprite-loader#configuration
+             */
+            pluginOptions: {
+                plainSprite: true,
+                extract: true,
+                symbolId: 'icon-[name]'
+            }
+        }
+    },
     configureWebpack: config => {
         config.devtool = 'cheap-source-map'
-
-        config.plugins.push(
-            new SpriteLoaderPlugin(
-                {
-                    plainSprite: true,
-                    spriteAttrs: {
-                        id: 'svg-sprite'
-                    }
-                }
-            )
-        )
 
         config.plugins.push(
             new WebpackNotifier(
@@ -131,34 +137,8 @@ module.exports = {
                 }
             )
         )
-
-        config.module.rules.push({
-            test: /\.svg$/,
-            use: [
-                {
-                    loader: 'svg-sprite-loader',
-                    options: {
-                        extract: true,
-                        spriteFilename: 'svg/sprite.svg',
-                        symbolId: 'icon-[name]'
-                    }
-                },
-                'svg-transform-loader',
-                {
-                    loader: 'svgo-loader',
-                    options: {
-                        plugins: [
-                            { removeTitle: true },
-                            { convertColors: { shorthex: false } },
-                            { convertPathData: false }
-                        ]
-                    }
-                }]
-        })
     },
     chainWebpack: config => {
-        const svgRule = config.module.rule('svg')
-
         if (config.plugins.has('prefetch')) {
             config.plugin('prefetch')
                 .tap(options => {
@@ -176,6 +156,9 @@ module.exports = {
             .set('@style', path.resolve(__dirname, 'resources/assets/styles'))
             .end()
 
-        svgRule.uses.clear()
+        config.module
+            .rule('svg-sprite')
+            .use('svgo-loader')
+            .loader('svgo-loader')
     }
 }
