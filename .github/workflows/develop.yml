@@ -5,7 +5,7 @@ on:
     branches: [ develop ]
 
 jobs:
-  bedrock:
+  sage:
     name: Sage (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
     strategy:
@@ -32,6 +32,23 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      - name: PHP Review
+        run: composer test
+
+  assets:
+    name: Sage (PHP ${{ matrix.php-versions }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-versions: ['10.x', '12']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Cache node modules
         uses: actions/cache@v2
         with:
@@ -39,15 +56,12 @@ jobs:
           key: ${{ runner.OS }}-nodemodules-${{ hashFiles('web/app/themes/gestion-cabinet-dentaire/yarn.lock') }}
           restore-keys: ${{ runner.OS }}-nodemodules
 
-      - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
-
-      - name: PHP Review
-        run: composer test
-
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: ${{ matrix.node-versions }}
+
+      - name: Vue command line
+        run: yarn add global @vue/cli
 
       - name: Assets review
         run: yarn lint
