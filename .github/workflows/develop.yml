@@ -53,12 +53,15 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.OS }}-nodemodules-${{ hashFiles('web/app/themes/gestion-cabinet-dentaire/yarn.lock') }}
+          key: ${{ runner.OS }}-nodemodules-${{ hashFiles('yarn.lock') }}
           restore-keys: ${{ runner.OS }}-nodemodules
 
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-versions }}
+
+      - name: Install dependencies
+        run: yarn
 
       - name: Assets review
         run: yarn lint
