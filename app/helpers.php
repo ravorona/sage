@@ -76,6 +76,26 @@ function asset_path($asset)
 }
 
 /**
+ * Check if hot reload mode is enabled.
+ *
+ * @return boolean
+ */
+function asset_hot_reload()
+{
+    return sage('assets')->hot();
+}
+
+/**
+ * Check if hot reload mode is enabled.
+ *
+ * @return boolean
+ */
+function asset_hot_entrypoint()
+{
+    return sage('assets')->hotReloadEntrypoint();
+}
+
+/**
  * @param string|string[] $templates Possible template files
  * @return array
  */

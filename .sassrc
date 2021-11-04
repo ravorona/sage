@@ -1,7 +1,0 @@
-{
-    "sourceMap": true,
-    "outputStyle": "expanded",
-    "includePaths": [
-        "node_modules"
-    ]
-}

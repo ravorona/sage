@@ -1,21 +1,10 @@
 {
-    "ident": "postcss",
-    "sourceMap": true,
     "plugins": {
         "autoprefixer":  {},
-        "postcss-custom-selectors": {},
-        "postcss-custom-media": {},
         "postcss-inline-svg": {
             "paths": [ "./resources/assets/svg" ],
             "removeStroke": true,
             "removeFill": true
-        },
-        "postcss-selector-matches": {},
-        "postcss-calc": {
-            "precision": 2
-        },
-        "postcss-reporter": {
-            "clearAllMessages": true
         }
     }
 }

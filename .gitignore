@@ -5,9 +5,6 @@
 # Dist folder
 dist
 
-# Processed files
-resources/views/layouts/app.blade.php
-
 # Dependencies
 node_modules
 vendor

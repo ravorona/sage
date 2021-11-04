@@ -1,0 +1,17 @@
+html,
+body {
+    font-size: 1rem;
+}
+
+body {
+    padding: 5em;
+}
+
+.whatsapp {
+    background: svg-load('whatsapp.svg');
+}
+
+.site {
+    border-top: 1px solid #dedede;
+    padding: 4em 0 0;
+}

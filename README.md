@@ -2,14 +2,14 @@
 
 # Wordpress starter theme
 
-* Based on [Sage](https://roots.io/sage/) version [9.0.9](https://github.com/roots/sage/releases/tag/9.0.9)
-* Using [Vue CLI](https://cli.vuejs.org/)
+* Based on [Sage](https://roots.io/sage/) version [9.0.10](https://github.com/roots/sage/releases/tag/9.0.9)
+* Using [Vite](https://vitejs.dev)
 
 
 ## Requirements
 
-* [Vue CLI](https://cli.vuejs.org/) >= 4.0.0
-* [Node.js](http://nodejs.org/) >= 10.0.0
+* [Vite](https://vitejs.dev) >= 2.6.9
+* [Node.js](http://nodejs.org/) >= 16.0.0
 * [Yarn](https://yarnpkg.com/en/docs/install)
 
 ## Theme installation
@@ -67,19 +67,6 @@ themes/your-theme-name/   # → Root of your Sage based theme
 * Update common configuration in `resources/assets/config.json`
 * Update `vue.config.js` for fine tuning
 
-### Enable HTTPS on hot reload mode
-
-Define your certificates paths by setting `https.key` and `https.cert` in `resources/assets/config.json`
-
-```json
-{
-  "https": {
-      "key": "path_to_key",
-      "cert": "path_to_cert"
-  }
-}
-```
-
 ### Build commands
 
 * `yarn hot` — Compile assets when file changes are made with hot reload
@@ -91,4 +78,4 @@ Define your certificates paths by setting `https.key` and `https.cert` in `resou
 
 * [Sage documentation](https://roots.io/sage/docs/)
 * [Controller documentation](https://github.com/soberwp/controller#usage)
-* [Vue CLI](https://cli.vuejs.org/config/#global-cli-config)
+* [Vite](https://vitejs.dev/guide/)

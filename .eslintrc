@@ -1,12 +1,10 @@
 {
-  "extends": [
-    "@ravorona/typescript"
-  ],
-  "plugins": [
-    "eslint-plugin-vue"
-  ],
-  "parser": "vue-eslint-parser",
-  "parserOptions": {
-    "parser": "@typescript-eslint/parser"
-  }
+    "plugins": [ "prettier" ],
+    "extends": [
+        "@ravorona/typescript",
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": "error"
+    }
 }

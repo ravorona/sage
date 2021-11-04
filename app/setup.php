@@ -11,8 +11,12 @@ use App\Assets\ExtendedJsonManifest;
  * Theme assets
  */
 add_action('wp_enqueue_scripts', function () {
-    // wp_enqueue_style('sage/main.css', asset_path('styles/main.css'), false, null);
-    // wp_enqueue_script('sage/main.js', asset_path('scripts/main.js'), ['jquery'], null, true);
+    if (asset_hot_reload()) {
+        wp_enqueue_script('sage/main.js', asset_hot_entrypoint(), array(), null, true);
+    } else {
+        wp_enqueue_style('sage/main.css', asset_path('resources/assets/scripts/main.ts'), false, null);
+        wp_enqueue_script('sage/main.js', asset_path('resources/assets/scripts/main.ts'), false, null, true);
+    }
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');

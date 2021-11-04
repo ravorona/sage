@@ -20,4 +20,19 @@ class ExtendedJsonManifest extends JsonManifest
     {
         return isset($this->manifest[$state]) && $this->manifest[$state];
     }
+
+    /**
+     * Chech if hot reload enabled
+     *
+     * @return boolean
+     */
+    public function hot()
+    {
+        return true;
+    }
+
+    public function hotReloadEntrypoint()
+    {
+        return HMR_ENTRYPOINT;
+    }
 }
