@@ -57,7 +57,7 @@ function template($file, $data = [])
 
 /**
  * Retrieve path to a compiled blade view
- * @param $file
+ * @param string $file
  * @param array $data
  * @return string
  */
@@ -67,14 +67,14 @@ function template_path($file, $data = [])
 }
 
 /**
- * @param $asset
+ * @param string $asset
+ * @param boolean $extractCss
  * @return string
  */
-function asset_path($asset)
+function asset_path($asset, $extractCss = false)
 {
-    return sage('assets')->getUri($asset);
+    return sage('assets')->getAssetsUri($asset, $extractCss);
 }
-
 /**
  * Check if hot reload mode is enabled.
  *
@@ -87,12 +87,12 @@ function asset_hot_reload()
 
 /**
  * Hot reload entrypoint
- *
+ * @param string $asset
  * @return boolean
  */
-function asset_hot_entrypoint()
+function asset_hot_entrypoint($asset)
 {
-    return sage('assets')->hotReloadEntrypoint();
+    return sage('assets')->hotReloadEntrypoint($asset);
 }
 
 /**
