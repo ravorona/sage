@@ -86,7 +86,7 @@ function asset_hot_reload()
 }
 
 /**
- * Check if hot reload mode is enabled.
+ * Hot reload entrypoint
  *
  * @return boolean
  */

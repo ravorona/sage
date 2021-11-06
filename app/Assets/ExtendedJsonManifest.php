@@ -28,11 +28,16 @@ class ExtendedJsonManifest extends JsonManifest
      */
     public function hot()
     {
-        return true;
+        return env('HMR_ENABLED') ?: false;
     }
 
+    /**
+     * Hot reload entrypoint
+     *
+     * @return string|boolean
+     */
     public function hotReloadEntrypoint()
     {
-        return HMR_ENTRYPOINT;
+        return env('HMR_ENTRYPOINT') ?: false;
     }
 }
