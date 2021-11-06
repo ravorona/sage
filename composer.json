@@ -1,6 +1,6 @@
 {
     "name": "ravorona/sage",
-    "version": "1.0.1",
+    "version": "2.0.0-alpha.1",
     "description": "Wordpress theme based on Sage starter theme using Vite",
     "type": "wordpress-theme",
     "license": "MIT",
@@ -34,5 +34,6 @@
         "post-create-project-cmd": [
             "Roots\\Sage\\Installer\\ComposerScript::postCreateProject"
         ]
-    }
+    },
+    "minimum-stability": "dev"
 }
