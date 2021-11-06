@@ -12,12 +12,13 @@ use App\Assets\ExtendedJsonManifest;
  */
 add_action('wp_enqueue_scripts', function () {
     $asset = 'resources/assets/scripts/main.ts';
+    $namespace = strtolower(wp_get_theme()->get('Name'));
 
     if (asset_hot_reload()) {
-        wp_enqueue_script('sage-main-js', asset_hot_entrypoint($asset), array(), null, true);
+        wp_enqueue_script($namespace, asset_hot_entrypoint($asset), array(), null, true);
     } else {
-        wp_enqueue_style('sage-main-css', asset_path($asset, true), false, null);
-        wp_enqueue_script('sage-main-js', asset_path($asset), false, null, true);
+        wp_enqueue_style($namespace, asset_path($asset, true), false, null);
+        wp_enqueue_script($namespace, asset_path($asset), false, null, true);
     }
 
     if (is_single() && comments_open() && get_option('thread_comments')) {

@@ -94,7 +94,9 @@ add_filter('comments_template', function ($comments_template) {
  * Load scripts asset as module
  */
 add_filter('script_loader_tag', function ($tag, $handle, $src) {
-    if ('sage/main.js' !== $handle) {
+    $namespace = strtolower(wp_get_theme()->get('Name'));
+
+    if ($namespace !== $handle) {
         return $tag;
     }
     $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
