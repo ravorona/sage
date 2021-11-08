@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2021 яαvoroηα - h.rakotonjanahary@gmail.com
+ * Copyright (c) 2021 яαvoroηα
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -22,23 +22,54 @@
  */
 
 /**
- * Common configurations
+ * Base grid
  */
-@import './common/variables';
-@import './common/media-queries';
+@mixin grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-size, 12), 1fr);
+    gap: var(--grid-gap, 32px);
+}
 
 /**
- * Helpers & functions
+ * Font face
  */
-@import './helpers/functions';
-@import './helpers/mixins';
+@mixin font-face($name, $path, $display: swap, $weight: null, $style: null, $exts: woff2 woff) {
+    $src: null;
+
+    $extmods: (
+        eot: '?',
+        svg: '#' + str-replace($name, ' ', '_')
+    );
+
+    $formats: (
+        otf: 'opentype',
+        ttf: 'truetype'
+    );
+
+    @each $ext in $exts {
+        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+        $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+        $src: append($src, url('#{quote($path + "." + $extmod)}') format(quote($format)), comma);
+    }
+
+    @font-face {
+        font-family: quote($name);
+        font-display: $display;
+        font-style: $style;
+        font-weight: $weight;
+        src: $src;
+    }
+}
 
 /**
- * Layout
+ * Element reset
  */
-@import './layouts/base';
-
-/**
- * Tools
- */
-@import './tools/guide';
+@mixin reset {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    background: none;
+    text-decoration: none;
+    color: currentColor;
+}

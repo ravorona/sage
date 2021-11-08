@@ -23,7 +23,7 @@
 
 html,
 body {
-    font-size: 1rem;
+    font-size: $baseFontSize;
     margin: 0;
 }
 
@@ -33,6 +33,6 @@ body {
 
 .container {
     max-width: 1400px;
-    width: percentage(.95);
+    width: math.percentage(.95);
     margin: 0 auto;
 }
