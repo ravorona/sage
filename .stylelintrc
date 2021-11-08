@@ -1,4 +1,3 @@
 {
-  "extends": "@ravorona/stylelint-config",
-  "customSyntax": "postcss-scss"
+  "extends": "@ravorona/stylelint-config"
 }
