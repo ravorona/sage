@@ -21,7 +21,7 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-$spacer: 10 !default;
+$spacer: 8 !default;
 $font-size: 10 !default;
 $letter-spacing: 1 !default;
 
@@ -30,19 +30,25 @@ $colors: (
 );
 
 :root {
-    --grid-gap: spacer();
+    --grid-gap: #{$spacer}px;
     --grid-size: 6;
 }
 
 @media (--md) {
     :root {
-        --grid-gap: spacer(2);
+        --grid-gap: #{$spacer * 2}px;
+    }
+}
+
+@media (--lg) {
+    :root {
+        --grid-size: 12;
     }
 }
 
 @media (--xl) {
     :root {
         --grid-size: 12;
-        --grid-gap: spacer(3);
+        --grid-gap: #{$spacer * 3}px;
     }
 }
