@@ -73,10 +73,14 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@ravorona/eslint-config-typescript@^4.0.4":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@ravorona/eslint-config-typescript/-/eslint-config-typescript-4.0.4.tgz#a79c39b1c6c3ff27d0bf908f306efc6b0557cf07"
-  integrity sha512-iQYsNpUKhMczRtOOHfsAnTHOv8iAGAq1uDXQPfV0zjY2AHnVSY8+TWx+PIzIy6wElM7xd17CyMBKU1q6s8w9yA==
+"@ravorona/eslint-config-typescript@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@ravorona/eslint-config-typescript/-/eslint-config-typescript-4.1.0.tgz#8b37b8a71dd9838cba994dfebeffb01eb8eb1e03"
+  integrity sha512-RhRRES8mGhPREOzmubKQDw1bIpjJNfEi5d5vbYF0kAjAhlqrc6a80t3Eu1G6UOe3f+WHUcfUudoRCMXgRBQRmA==
+  dependencies:
+    "@ravorona/eslint-config" "^4.0.4"
+    "@typescript-eslint/eslint-plugin" "^5.3.0"
+    "@typescript-eslint/parser" "^5.3.0"
 
 "@ravorona/eslint-config@^4.0.4":
   version "4.0.4"
@@ -1475,6 +1479,11 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
+
+postcss-custom-media@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-custom-media/-/postcss-custom-media-8.0.0.tgz#1be6aff8be7dc9bf1fe014bde3b71b92bb4552f1"
+  integrity sha512-FvO2GzMUaTN0t1fBULDeIvxr5IvbDXcIatt6pnJghc736nqNgsGao5NT+5+WVLAQiTt6Cb3YUms0jiPaXhL//g==
 
 postcss-inline-svg@^5.0.0:
   version "5.0.0"
