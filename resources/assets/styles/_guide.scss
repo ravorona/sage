@@ -54,6 +54,6 @@
 
 .debug {
     *:not(.container):not(.main-content):not(.main-header):not(.main-footer):not(.guide):not([class^='guide-']):hover {
-        background-color: rgba(150 150 255 / .1);
+        background-color: var(--guide-debug-color, rgba(150 150 255 / .1));
     }
 }
