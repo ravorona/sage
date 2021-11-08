@@ -15,7 +15,7 @@
   "devDependencies": {
     "@ravorona/eslint-config": "^4.0.4",
     "@ravorona/eslint-config-typescript": "^4.0.4",
-    "@ravorona/stylelint-config": "^2.0.1",
+    "@ravorona/stylelint-config": "^2.1.0",
     "@types/node": "^16.11.6",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",
