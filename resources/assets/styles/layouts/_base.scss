@@ -26,16 +26,12 @@ body {
     font-size: 1rem;
 }
 
-body {
-    padding: 5em;
-}
-
 .whatsapp {
     background: svg-load('whatsapp.svg');
 }
 
 .container {
     max-width: 1400px;
-    width: .95;
+    width: percentage(.95);
     margin: 0 auto;
 }
