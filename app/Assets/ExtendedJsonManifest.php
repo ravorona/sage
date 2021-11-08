@@ -30,10 +30,10 @@ class ExtendedJsonManifest extends JsonManifest
      */
     public function getAssetsUri($asset, $extractCss)
     {
-        $file = isset($this->manifest[$asset]) && isset($this->manifest[$asset]['file']) ?
+        $file = array_key_exists($asset, $this->manifest) && array_key_exists('file', $this->manifest[$asset]) ?
             "{$this->dist}/{$this->manifest[$asset]['file']}" : "{$this->dist}/{$asset}";
 
-        if ($file && $extractCss) {
+        if ($file && $extractCss && array_key_exists($asset, $this->manifest)) {
             $file = "{$this->dist}/{$this->manifest[$asset]['css'][0]}";
         }
 
