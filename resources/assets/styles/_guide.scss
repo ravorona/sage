@@ -32,7 +32,7 @@
     &-wrapper {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        gap: 32px;
+        gap: var(--guide-gap, 32px);
         height: percentage(1);
     }
 
