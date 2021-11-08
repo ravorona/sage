@@ -4,4 +4,4 @@
   </div>
 </footer>
 
-@includeWhen(!$is_production, 'tools.guide')
+@includeWhen(!$isProduction, 'tools.guide')

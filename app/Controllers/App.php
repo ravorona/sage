@@ -36,7 +36,7 @@ class App extends Controller
      *
      * @return boolean
      */
-    public function is_production()
+    public function isProduction()
     {
         return env('WP_ENV') === 'production';
     }
