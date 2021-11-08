@@ -3,3 +3,5 @@
     @php dynamic_sidebar('sidebar-footer') @endphp
   </div>
 </footer>
+
+@includeWhen(!$is_production, 'tools.guide')

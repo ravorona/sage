@@ -30,4 +30,14 @@ class App extends Controller
         }
         return get_the_title();
     }
+
+    /**
+     * Is production
+     *
+     * @return boolean
+     */
+    public function is_production()
+    {
+        return env('WP_ENV') === 'production';
+    }
 }

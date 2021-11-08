@@ -1,0 +1,59 @@
+.guide {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+    visibility: hidden;
+    opacity: 0;
+    transition: .4s opacity ease-out;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: red;
+        display: none;
+    }
+
+    &::before {
+        top: 10vh;
+    }
+
+    &::after {
+        bottom: 10vh;
+    }
+
+    &-wrapper {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 32px;
+        height: percentage(1);
+    }
+
+    &-element {
+        background: var(--guide-background-color, rgba(150 0 0 / .1));
+        border-left: 1px solid var(--guide-outline-color, rgba(150 0 0 / .2));
+        border-right: 1px solid var(--guide-outline-color, rgba(150 0 0 / .2));
+    }
+
+    .container {
+        height: percentage(1);
+    }
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+.debug {
+    *:not(.container):not(.main-content):not(.main-header):not(.main-footer):not(.guide):not([class^='guide-']):hover {
+        background-color: rgba(150 150 255 / .1);
+    }
+}
