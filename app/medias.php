@@ -173,7 +173,8 @@ function get_media($id, $type = 'standard', $alt = false, $attributes = false, $
             $srcset = $src[0];
         }
 
-        $media = '<figure class="media-element ' . $orientation . ' ' . $type . '" data-width="' . $src[1] . '" data-height="' . $src[2] . '">';
+        $media = '<figure class="media-element ' . $orientation . ' ' . $type . '"';
+        $media .= ' data-width="' . $src[1] . '" data-height="' . $src[2] . '">';
         $media .= '<picture class="media">';
 
         if (get_post_mime_type($id) !== 'image/gif') {
