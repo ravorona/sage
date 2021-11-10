@@ -12,10 +12,16 @@
         "noImplicitAny": true,
         "noImplicitThis": true,
         "noImplicitReturns": true,
+        "baseUrl": ".",
         "lib": [
             "esnext",
             "dom"
-        ]
+        ],
+        "paths": {
+            "@scripts/*": [
+                "resources/assets/scripts/*"
+            ]
+        }
     },
     "include": [
         "resources/assets/**/*.ts",
