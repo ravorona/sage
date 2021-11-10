@@ -21,22 +21,24 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
- * Spacer generator
- */
-@function spacer($size: 1) {
-    @return #{$spacer * $size}px;
-}
+@use 'sass:math';
 
 /**
  * Font size generator
  */
 @function prem($size, $base: $font-size) {
-    @return #{$size / $base}rem;
+    @return #{math.div($size, $base)}rem;
 }
 
 @function pem($size, $base: $letter-spacing) {
-    @return #{$base / $size}em;
+    @return #{math.div($base, $size)}em;
+}
+
+/**
+ * Spacer generator
+ */
+@function spacer($size: 1) {
+    @return prem($spacer * $size);
 }
 
 /**
