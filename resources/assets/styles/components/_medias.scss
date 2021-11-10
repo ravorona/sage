@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2021 яαvoroηα - h.rakotonjanahary@gmail.com
+ * Copyright (c) 2021 яαvoroηα
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -21,29 +21,21 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/**
- * Common configurations
- */
-@import './common/variables';
-@import './common/media-queries';
+ .media-element {
+    margin: 0;
+    padding: 0;
 
-/**
- * Helpers & functions
- */
-@import './helpers/functions';
-@import './helpers/mixins';
+    picture {
+        display: block;
+        width: percentage(1);
+        height: percentage(1);
+        background: var(--media-placeholder-color, grey);
+    }
 
-/**
- * Components
- */
-@import './components/medias';
-
-/**
- * Layout
- */
-@import './layouts/base';
-
-/**
- * Tools
- */
-@import './tools/guide';
+    img {
+        display: block;
+        width: percentage(1);
+        height: percentage(1);
+        object-fit: cover;
+    }
+}
