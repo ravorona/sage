@@ -1,6 +1,6 @@
 {
     "name": "ravorona/sage",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Wordpress theme based on Sage starter theme using Vite",
     "type": "wordpress-theme",
     "license": "MIT",

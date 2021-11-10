@@ -87,10 +87,10 @@
   resolved "https://registry.yarnpkg.com/@ravorona/eslint-config/-/eslint-config-4.0.4.tgz#5938f81a04a2d5792ad6a414ec670e74887f35f0"
   integrity sha512-Og1XYf6Q+8fNZMQHyxspydeSQq/v8zNAaCqs8U1L+cuIQGJuq9mEXjIFitAuexoRPhSv/Rg4qFX6leslSE1Thw==
 
-"@ravorona/stylelint-config@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@ravorona/stylelint-config/-/stylelint-config-2.1.0.tgz#77af0b6ff360248e6957ed0f5f617a0d915ac59c"
-  integrity sha512-sXWmSs6+oKw9Xf5+yJQP3y31mt1aVjjo6+YyGvd7T9OPTjxE04SitfgpTW3TqiggUHc7uMdECvzAgLdveA2gpQ==
+"@ravorona/stylelint-config@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@ravorona/stylelint-config/-/stylelint-config-2.1.1.tgz#b9581133835ec9edb0d974da3f69963ef9445b17"
+  integrity sha512-3CfiTM+3rAuEMPCyHEat6aBIMrFBuo7l1U2TLx583GTxs4hpZaNB+DvVFQfLI/eG/FUH3qvzhM/R+eSalm84Rw==
 
 "@types/json-schema@^7.0.9":
   version "7.0.9"

@@ -1,6 +1,6 @@
 {
   "name": "@ravorona/sage",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Wordpress theme based on Sage starter theme using Vite",
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@ravorona/eslint-config-typescript": "^4.1.0",
-    "@ravorona/stylelint-config": "^2.1.0",
+    "@ravorona/stylelint-config": "^2.1.1",
     "@types/node": "^16.11.6",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.1.0",

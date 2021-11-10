@@ -8,6 +8,16 @@ use Roots\Sage\Template\BladeProvider;
 use App\Assets\ExtendedJsonManifest;
 
 /**
+ * Init
+ */
+add_action('init', function () {
+    /**
+     * Cleanup media formats
+     */
+    reset_image_sizes();
+});
+
+/**
  * Theme assets
  */
 add_action('wp_enqueue_scripts', function () {
@@ -77,6 +87,11 @@ add_action('after_setup_theme', function () {
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
     add_editor_style(asset_path('editor.css'));
+
+    /**
+     * Register custom image sizes
+     */
+    set_image_sizes();
 }, 20);
 
 /**
