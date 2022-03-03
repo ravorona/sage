@@ -69,10 +69,11 @@ themes/your-theme-name/   # → Root of your Sage based theme
 
 ### Build commands
 
-* `yarn hot` — Compile assets when file changes are made with hot reload
-* `yarn watch` — Compile assets when file changes are made
-* `yarn build` — Compile and optimize the files in your assets directory
-* `yarn build:production` — Compile assets for production
+* `yarn dev` — Start dev server
+* `yarn build` — Compile assets
+* `yarn lint` — Lint stylesheets & javascripts
+* `yarn lint:css` — Lint stylesheets
+* `yarn lint:js` — Lint javascripts
 
 ## Documentation
 
