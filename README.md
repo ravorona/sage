@@ -64,8 +64,7 @@ themes/your-theme-name/   # → Root of your Sage based theme
 ## Theme development
 
 * Run `yarn` from the theme directory to install dependencies
-* Update common configuration in `resources/assets/config.json`
-* Update `vue.config.js` for fine tuning
+* Update `vite.config.ts` for fine tuning
 
 ### Build commands
 
