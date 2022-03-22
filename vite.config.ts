@@ -1,5 +1,23 @@
-import { defineConfig } from 'vite'
+import 'dotenv/config'
 import path from 'path'
+import { defineConfig, ServerOptions } from 'vite'
+
+const server: ServerOptions = {
+    open: true,
+    fs: {
+        strict: true,
+        allow: ['node_modules', 'resources/assets']
+    }
+}
+
+process.env.DOMAIN && (server.host = process.env.DOMAIN)
+process.env.DEV_PORT && (server.port = parseInt(process.env.DEV_PORT))
+process.env.HTTPS_KEY &&
+    process.env.HTTPS_CERT &&
+    (server.https = {
+        key: process.env.HTTPS_KEY,
+        cert: process.env.HTTPS_CERT
+    })
 
 export default defineConfig({
     resolve: {
@@ -19,14 +37,5 @@ export default defineConfig({
             }
         }
     },
-    server: {
-        https: {
-            key: '/Users/ravorona/.certificates/ravorona-key.pem',
-            cert: '/Users/ravorona/.certificates/ravorona-cert.pem'
-        },
-        fs: {
-            strict: true,
-            allow: ['node_modules', 'resources/assets']
-        }
-    }
+    server
 })
