@@ -2,15 +2,14 @@
 
 # Wordpress starter theme
 
-* Based on [Sage](https://roots.io/sage/) version [9.0.10](https://github.com/roots/sage/releases/tag/9.0.9)
-* Using [Vite](https://vitejs.dev)
-
+-   Based on [Sage](https://roots.io/sage/) version [9.0.10](https://github.com/roots/sage/releases/tag/9.0.9)
+-   Using [Vite](https://vitejs.dev)
 
 ## Requirements
 
-* [Vite](https://vitejs.dev) >= 2.6.9
-* [Node.js](http://nodejs.org/) >= 16.0.0
-* [Yarn](https://yarnpkg.com/en/docs/install)
+-   [Vite](https://vitejs.dev) >= 2.6.9
+-   [Node.js](http://nodejs.org/) >= 16.0.0
+-   [Yarn](https://yarnpkg.com/en/docs/install)
 
 ## Theme installation
 
@@ -63,19 +62,31 @@ themes/your-theme-name/   # → Root of your Sage based theme
 
 ## Theme development
 
-* Run `yarn` from the theme directory to install dependencies
-* Update `vite.config.ts` for fine tuning
+-   Run `yarn` from the theme directory to install dependencies
+-   Update if needed `vite.config.ts` for bundler fine tuning
 
 ### Build commands
 
-* `yarn dev` — Start dev server
-* `yarn build` — Compile assets
-* `yarn lint` — Lint stylesheets & javascripts
-* `yarn lint:css` — Lint stylesheets
-* `yarn lint:js` — Lint javascripts
+-   `yarn dev` — Start dev server
+-   `yarn build` — Compile assets
+-   `yarn lint` — Lint stylesheets & javascripts
+-   `yarn lint:css` — Lint stylesheets
+-   `yarn lint:js` — Lint javascripts
+
+### Hot reload mode
+
+To enable hot reload add the following variables in your `.env`
+
+```
+# if true hot reload is active
+HMR_ENABLED=true
+
+# Endpoint where the bundler serve your assets
+HMR_ENTRYPOINT=https://example.com:3000
+```
 
 ## Documentation
 
-* [Sage documentation](https://roots.io/sage/docs/)
-* [Controller documentation](https://github.com/soberwp/controller#usage)
-* [Vite](https://vitejs.dev/guide/)
+-   [Sage documentation](https://roots.io/sage/docs/)
+-   [Controller documentation](https://github.com/soberwp/controller#usage)
+-   [Vite](https://vitejs.dev/guide/)
