@@ -40,13 +40,13 @@
     "prefer-stable": true,
     "scripts": {
         "lint": [
-            "phpcs --extensions=php --standard=PSR12 app"
+            "phpcs"
         ]
     },
     "extra": {
         "acorn": {
             "providers": [
-            "App\\Providers\\ThemeServiceProvider"
+                "App\\Providers\\ThemeServiceProvider"
             ]
         }
     }
