@@ -1,12 +1,19 @@
-import 'dotenv/config'
+import dotenv from 'dotenv'
 import path from 'path'
 import { defineConfig, ServerOptions } from 'vite'
 
+dotenv.config()
+
+const assets = {
+    base: 'resources/assets',
+    scripts: 'resources/assets/scripts',
+    styles: 'resources/assets/styles'
+}
+
 const server: ServerOptions = {
-    open: true,
     fs: {
         strict: true,
-        allow: ['node_modules', 'resources/assets']
+        allow: ['node_modules', assets.base]
     }
 }
 
@@ -22,16 +29,16 @@ process.env.HTTPS_KEY &&
 export default defineConfig({
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'resources/assets'),
-            '@scripts': path.resolve(__dirname, 'resources/assets/scripts'),
-            '@styles': path.resolve(__dirname, 'resources/assets/styles')
+            '@': path.resolve(__dirname, assets.base),
+            '@scripts': path.resolve(__dirname, assets.scripts),
+            '@styles': path.resolve(__dirname, assets.styles)
         }
     },
     build: {
         sourcemap: true,
         manifest: true,
         rollupOptions: {
-            input: ['resources/assets/scripts/main.ts', 'resources/assets/styles/main.scss'],
+            input: [`${assets.scripts}/main.ts`, `${assets.styles}/main.scss`],
             output: {
                 dir: 'dist'
             }
