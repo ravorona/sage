@@ -1,70 +1,53 @@
 {
-  "name": "roots/sage",
-  "type": "wordpress-theme",
-  "license": "MIT",
-  "description": "WordPress starter theme with a modern development workflow",
-  "homepage": "https://roots.io/sage/",
-  "authors": [
-    {
-      "name": "Ben Word",
-      "email": "ben@benword.com",
-      "homepage": "https://github.com/retlehs"
+    "name": "ravorona/sage",
+    "version": "2.2.0",
+    "description": "Wordpress theme based on Sage starter theme using Vite",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "яαvoroηα",
+            "email": "h.rakotonjanahary@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/ravorona/sage/issues"
     },
-    {
-      "name": "Scott Walkinshaw",
-      "email": "scott.walkinshaw@gmail.com",
-      "homepage": "https://github.com/swalkinshaw"
+    "keywords": [
+        "wordpress"
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
     },
-    {
-      "name": "QWp6t",
-      "email": "hi@qwp6t.me",
-      "homepage": "https://github.com/qwp6t"
+    "require": {
+        "php": "^7.4|^8.0",
+        "roots/acorn": "^2.0"
     },
-    {
-      "name": "Brandon Nifong",
-      "email": "brandon@tendency.me",
-      "homepage": "https://github.com/log1x"
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.6"
+    },
+    "suggest": {
+        "log1x/sage-directives": "A collection of useful Blade directives for WordPress and Sage (^1.0).",
+        "log1x/sage-svg": "A useful SVG directive for inlining SVG's within Blade views (^1.0)."
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "lint": [
+            "phpcs --extensions=php --standard=PSR12 app"
+        ]
+    },
+    "extra": {
+        "acorn": {
+            "providers": [
+            "App\\Providers\\ThemeServiceProvider"
+            ]
+        }
     }
-  ],
-  "keywords": [
-    "wordpress"
-  ],
-  "support": {
-    "issues": "https://github.com/roots/sage/issues",
-    "forum": "https://discourse.roots.io/"
-  },
-  "autoload": {
-    "psr-4": {
-      "App\\": "app/"
-    }
-  },
-  "require": {
-    "php": "^7.4|^8.0"
-  },
-  "require-dev": {
-    "squizlabs/php_codesniffer": "^3.6"
-  },
-  "suggest": {
-    "log1x/sage-directives": "A collection of useful Blade directives for WordPress and Sage (^1.0).",
-    "log1x/sage-svg": "A useful SVG directive for inlining SVG's within Blade views (^1.0)."
-  },
-  "config": {
-    "optimize-autoloader": true,
-    "preferred-install": "dist",
-    "sort-packages": true
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "scripts": {
-    "lint": [
-      "phpcs --extensions=php --standard=PSR12 app"
-    ]
-  },
-  "extra": {
-    "acorn": {
-      "providers": [
-        "App\\Providers\\ThemeServiceProvider"
-      ]
-    }
-  }
 }

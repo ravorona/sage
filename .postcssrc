@@ -1,9 +1,11 @@
 {
     "plugins": {
-        "autoprefixer":  {},
+        "autoprefixer": {},
         "postcss-custom-media": {},
         "postcss-inline-svg": {
-            "paths": [ "./resources/assets/svg" ],
+            "paths": [
+                "./resources/svg"
+            ],
             "removeStroke": true,
             "removeFill": true
         }
