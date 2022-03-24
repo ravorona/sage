@@ -1,0 +1,56 @@
+/*
+ Copyright (c) 2022 яαvoroηα
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy of
+ this software and associated documentation files (the "Software"), to deal in
+ the Software without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ the Software, and to permit persons to whom the Software is furnished to do so,
+ subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+@use 'sass:list';
+@use 'sass:string';
+@use 'sass:map';
+@use 'sass:math';
+
+/**
+  * Font face
+  */
+@mixin font-face($name, $path, $display: swap, $weight: null, $style: null, $exts: woff2 woff) {
+    $src: null;
+
+    $extmods: (
+        eot: '?',
+        svg: '#' + str-replace($name, ' ', '_')
+    );
+
+    $formats: (
+        otf: 'opentype',
+        ttf: 'truetype'
+    );
+
+    @each $ext in $exts {
+        $extmod: if(map.has-key($extmods, $ext), $ext + map.get($extmods, $ext), $ext);
+        $format: if(map.has-key($formats, $ext), map.get($formats, $ext), $ext);
+        $src: list.append($src, url('#{string.quote($path + "." + $extmod)}') format(string.quote($format)), comma);
+    }
+
+    @font-face {
+        font-family: string.quote($name);
+        font-display: $display;
+        font-style: $style;
+        font-weight: $weight;
+        src: $src;
+    }
+}

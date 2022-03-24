@@ -1,6 +1,6 @@
 {
     "name": "ravorona/sage",
-    "version": "2.1.1",
+    "version": "2.2.0",
     "description": "Wordpress theme based on Sage starter theme using Vite",
     "type": "wordpress-theme",
     "license": "MIT",
@@ -30,7 +30,9 @@
         "roots/sage-installer": "~1.6"
     },
     "scripts": {
-        "test": ["phpcs"],
+        "test": [
+            "phpcs"
+        ],
         "post-create-project-cmd": [
             "Roots\\Sage\\Installer\\ComposerScript::postCreateProject"
         ]

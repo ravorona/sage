@@ -22,54 +22,17 @@
  */
 
 /**
- * Base grid
+ * Breakpoints
  */
-@mixin grid {
-    display: grid;
-    grid-template-columns: repeat(var(--grid-size, 12), 1fr);
-    gap: var(--grid-gap, 32px);
-}
+@custom-media --xs (min-width: 360px);
+@custom-media --sm (min-width: 640px);
+@custom-media --md (min-width: 768px);
+@custom-media --lg (min-width: 1024px);
+@custom-media --xl (min-width: 1280px);
+@custom-media --hi (min-width: 1440px);
 
 /**
- * Font face
+ * Orientations
  */
-@mixin font-face($name, $path, $display: swap, $weight: null, $style: null, $exts: woff2 woff) {
-    $src: null;
-
-    $extmods: (
-        eot: '?',
-        svg: '#' + str-replace($name, ' ', '_')
-    );
-
-    $formats: (
-        otf: 'opentype',
-        ttf: 'truetype'
-    );
-
-    @each $ext in $exts {
-        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
-        $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
-        $src: append($src, url('#{quote($path + "." + $extmod)}') format(quote($format)), comma);
-    }
-
-    @font-face {
-        font-family: quote($name);
-        font-display: $display;
-        font-style: $style;
-        font-weight: $weight;
-        src: $src;
-    }
-}
-
-/**
- * Element reset
- */
-@mixin reset {
-    margin: 0;
-    padding: 0;
-    outline: none;
-    border: none;
-    background: none;
-    text-decoration: none;
-    color: currentColor;
-}
+@custom-media --landscape (orientation: landscape);
+@custom-media --portrait (orientation: portrait);

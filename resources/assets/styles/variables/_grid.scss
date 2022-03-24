@@ -21,29 +21,27 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-@use 'sass:math';
-
-/**
- * Font size generator
- */
-@function prem($size, $base: $font-size) {
-    @return #{math.div($size, $base)}rem;
+:root {
+    --grid-max: #{rem(1400)};
+    --grid-gap: #{spacer()};
+    --grid-size: 6;
 }
 
-@function pem($size, $base: $letter-spacing) {
-    @return #{math.div($base, $size)}em;
+@media (--md) {
+    :root {
+        --grid-gap: #{spacer(2)};
+    }
 }
 
-/**
- * Spacer generator
- */
-@function spacer($size: 1) {
-    @return prem($spacer * $size);
+@media (--lg) {
+    :root {
+        --grid-size: 12;
+    }
 }
 
-/**
- * Get color
- */
-@function col($color) {
-    @return map-get($colors, '#{$color}');
+@media (--xl) {
+    :root {
+        --grid-size: 12;
+        --grid-gap: #{spacer(3)};
+    }
 }

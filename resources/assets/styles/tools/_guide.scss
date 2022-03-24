@@ -55,7 +55,7 @@
     &-wrapper {
         @include grid;
         row-gap: 0;
-        height: percentage(1);
+        height: 100%;
     }
 
     &-element {
@@ -65,7 +65,7 @@
     }
 
     .container {
-        height: percentage(1);
+        height: 100%;
     }
 
     &.active {
