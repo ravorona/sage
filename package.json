@@ -27,6 +27,7 @@
         "postcss-inline-svg": "^5.0.0",
         "postcss-scss": "^4.0.3",
         "prettier": "^2.5.1",
+        "rollup-plugin-output-manifest": "^2.0.0",
         "sass": "^1.49.9",
         "stylelint": "^14.5.3",
         "stylelint-config-recommended-scss": "^6.0.0",

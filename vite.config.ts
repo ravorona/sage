@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import path from 'path'
 import { defineConfig, ServerOptions } from 'vite'
+import outputManifest, { Bundle } from 'rollup-plugin-output-manifest'
 
 dotenv.config()
 
@@ -36,12 +37,25 @@ export default defineConfig({
     },
     build: {
         sourcemap: true,
-        manifest: true,
+        manifest: false,
         rollupOptions: {
-            input: [`${assets.scripts}/main.ts`, `${assets.styles}/main.scss`],
+            input: {
+                main: path.resolve(__dirname, `${assets.scripts}/main.ts`),
+                editor: path.resolve(__dirname, `${assets.scripts}/editor.ts`)
+            },
             output: {
-                dir: 'dist'
-            }
+                sourcemap: true,
+                dir: 'public'
+            },
+            plugins: [
+                outputManifest({
+                    map: (bundle: Bundle): Bundle => {
+                        bundle.name = bundle.name.replace(/.css$/gm, '')
+
+                        return bundle
+                    }
+                })
+            ]
         }
     },
     server
