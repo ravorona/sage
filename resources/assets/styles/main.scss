@@ -22,28 +22,28 @@
  */
 
 /**
- * Common configurations
+ * Functionnals
  */
-@import './common/variables';
-@import './common/media-queries';
+@import 'functions';
+@import 'mixins';
+@import 'variables';
 
 /**
- * Helpers & functions
+ * Reset
  */
-@import './helpers/functions';
-@import './helpers/mixins';
+@import 'normalize';
 
 /**
  * Components
  */
-@import './components/medias';
+@import 'components';
 
 /**
  * Layout
  */
-@import './layouts/base';
+@import 'layouts';
 
 /**
  * Tools
  */
-@import './tools/guide';
+@import 'tools';

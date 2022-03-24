@@ -21,10 +21,10 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-html,
 body {
-    font-size: #{$font-size}px;
-    margin: 0;
+    @include typo-base;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .whatsapp {
@@ -32,7 +32,5 @@ body {
 }
 
 .container {
-    max-width: 1400px;
-    width: percentage(.95);
-    margin: 0 auto;
+    @include container;
 }

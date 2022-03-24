@@ -27,15 +27,15 @@
 
     picture {
         display: block;
-        width: percentage(1);
-        height: percentage(1);
+        width: 100%;
+        height: 100%;
         background: var(--media-placeholder-color, grey);
     }
 
     img {
         display: block;
-        width: percentage(1);
-        height: percentage(1);
+        width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 }
