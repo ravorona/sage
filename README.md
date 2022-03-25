@@ -89,7 +89,7 @@ HMR_ENABLED=true
 HMR_ENTRYPOINT=https://example.com:3000
 ```
 
-Update `.env` path in `vite.config.ts`
+Update path to `.env` in `vite.config.ts`
 
 ```javascript
 dotenv.config({ path: '../../../../.env' })
