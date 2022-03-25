@@ -23,10 +23,10 @@ Install Sage using Composer from your WordPress themes directory (replace `your-
 $ composer create-project ravorona/sage your-theme-name
 ```
 
-To install the latest development version of Sage, add `dev-master` to the end of the command:
+To install the latest development version of Sage, add `dev-develop` to the end of the command:
 
 ```shell
-$ composer create-project ravorona/sage your-theme-name dev-master
+$ composer create-project ravorona/sage your-theme-name dev-develop
 ```
 
 ## Theme structure
