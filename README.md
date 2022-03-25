@@ -1,12 +1,15 @@
 ![Development](https://github.com/ravorona/sage/actions/workflows/develop.yml/badge.svg) ![Release](https://github.com/ravorona/sage/actions/workflows/publish.yml/badge.svg)
 
-# Wordpress starter theme
+# 🧩 Wordpress Starter Theme
 
--   Based on [Sage](https://roots.io/sage/) version [9.0.10](https://github.com/roots/sage/releases/tag/9.0.9)
+-   Based on [Sage](https://roots.io/sage/) version [10](https://github.com/roots/sage/)
 -   Using [Vite](https://vitejs.dev)
 
 ## Requirements
 
+-   [Acorn](https://docs.roots.io/acorn/2.x/installation/) v2
+-   [PHP](https://secure.php.net/manual/en/install.php) >= 7.4.0 (with [`php-mbstring`](https://secure.php.net/manual/en/book.mbstring.php) enabled)
+-   [Composer](https://getcomposer.org/download/)
 -   [Vite](https://vitejs.dev) >= 2.6.9
 -   [Node.js](http://nodejs.org/) >= 16.0.0
 -   [Yarn](https://yarnpkg.com/en/docs/install)
@@ -20,50 +23,51 @@ Install Sage using Composer from your WordPress themes directory (replace `your-
 $ composer create-project ravorona/sage your-theme-name
 ```
 
-To install the latest development version of Sage, add `dev-master` to the end of the command:
+To install the latest development version of Sage, add `dev-develop` to the end of the command:
 
 ```shell
-$ composer create-project ravorona/sage your-theme-name dev-master
+$ composer create-project ravorona/sage your-theme-name dev-develop
 ```
 
 ## Theme structure
 
-```shell
+```sh
 themes/your-theme-name/   # → Root of your Sage based theme
 ├── app/                  # → Theme PHP
-│   ├── Controllers/      # → Controller files
-│   ├── admin.php         # → Theme customizer setup
+│   ├── Providers/        # → Service providers
+│   ├── View/             # → View models
 │   ├── filters.php       # → Theme filters
-│   ├── helpers.php       # → Helper functions
+│   ├── helpers.php       # → Global helpers
+│   ├── medias.php        # → Medias helper
 │   └── setup.php         # → Theme setup
 ├── composer.json         # → Autoloading for `app/` files
-├── composer.lock         # → Composer lock file (never edit)
-├── dist/                 # → Built theme assets (never edit)
+├── public/               # → Built theme assets (never edit)
+├── functions.php         # → Theme bootloader
+├── index.php             # → Theme template wrapper
 ├── node_modules/         # → Node.js packages (never edit)
-├── public/               # → Static assets folder. Every assets placed in this folder will be copied through webpack (never edit)
 ├── package.json          # → Node.js dependencies and scripts
 ├── resources/            # → Theme assets and templates
-│   ├── assets/           # → Front-end assets
-│   │   ├── config.json   # → Settings for compiled assets
-│   │   ├── config.json   # → Settings for pwa
-│   │   ├── fonts/        # → Theme fonts
-│   │   ├── images/       # → Theme images
-│   │   ├── scripts/      # → Theme JS
-│   │   └── styles/       # → Theme stylesheets
-│   ├── functions.php     # → Composer autoloader, theme includes
-│   ├── index.php         # → Never manually edit
-│   ├── screenshot.png    # → Theme screenshot for WP admin
-│   ├── style.css         # → Theme meta information
+│   ├── fonts/            # → Theme fonts
+│   ├── images/           # → Theme images
+│   ├── scripts/          # → Theme javascript
+│   ├── styles/           # → Theme stylesheets
+│   ├── svg/              # → Theme svgs
 │   └── views/            # → Theme templates
+│       ├── components/   # → Component templates
+│       ├── forms/        # → Form templates
 │       ├── layouts/      # → Base templates
-│       └── partials/     # → Partial templates
-└── vendor/               # → Composer packages (never edit)
+│       ├── partials/     # → Partial templates
+        └── sections/     # → Section templates
+├── screenshot.png        # → Theme screenshot for WP admin
+├── style.css             # → Theme meta information
+├── vendor/               # → Composer packages (never edit)
+└── vite.config.ts        # → Vite configuration
 ```
 
 ## Theme development
 
 -   Run `yarn` from the theme directory to install dependencies
--   Update if needed `vite.config.ts` for bundler fine tuning
+-   Update `vite.config.ts` for bundler fine tuning
 
 ### Build commands
 
@@ -77,12 +81,18 @@ themes/your-theme-name/   # → Root of your Sage based theme
 
 To enable hot reload add the following variables in your `.env`
 
-```
+```sh
 # if true hot reload is active
 HMR_ENABLED=true
 
 # Endpoint where the bundler serve your assets
 HMR_ENTRYPOINT=https://example.com:3000
+```
+
+Update path to `.env` in `vite.config.ts`
+
+```javascript
+dotenv.config({ path: '../../../../.env' })
 ```
 
 ## Documentation

@@ -1,63 +1,80 @@
 <?php
 
+/**
+ * Theme setup.
+ */
+
 namespace App;
 
-use Roots\Sage\Container;
-use Roots\Sage\Template\Blade;
-use Roots\Sage\Template\BladeProvider;
-use App\Assets\ExtendedJsonManifest;
+use function Roots\bundle;
 
 /**
- * Init
+ * Register the theme assets.
+ *
+ * @return void
  */
-add_action('init', function () {
+add_action('wp_enqueue_scripts', function (): void {
     /**
-     * Cleanup media formats
+     * Cleanup styles
      */
-    reset_image_sizes();
-});
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
 
-/**
- * Theme assets
- */
-add_action('wp_enqueue_scripts', function () {
-    $asset = 'resources/assets/scripts/main.ts';
-    $namespace = strtolower(wp_get_theme()->get('Name'));
+    /**
+     * Enqueue theme stylesheets
+     */
+    if (hmr_enabled()) {
+        $asset = 'resources/scripts/main.ts';
+        $namespace = strtolower(wp_get_theme()->get('Name'));
 
-    if (asset_hot_reload()) {
-        wp_enqueue_script($namespace, asset_hot_entrypoint($asset), array(), null, true);
+        wp_enqueue_script($namespace, hmr_assets($asset), array(), null, true);
     } else {
-        wp_enqueue_style($namespace, asset_path($asset, true), false, null);
-        wp_enqueue_script($namespace, asset_path($asset), false, null, true);
-    }
-
-    if (is_single() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
+        bundle('main')->enqueue();
     }
 }, 100);
 
 /**
- * Theme setup
+ * Register the theme assets with the block editor.
+ *
+ * @return void
  */
-add_action('after_setup_theme', function () {
+add_action('enqueue_block_editor_assets', function (): void {
+    if (hmr_enabled()) {
+        $asset = 'resources/scripts/editor.ts';
+        $namespace = strtolower(wp_get_theme()->get('Name'));
+
+        wp_enqueue_script($namespace, hmr_assets($asset), array(), null, true);
+    } else {
+        bundle('editor')->enqueue();
+    }
+}, 100);
+
+/**
+ * Register the initial theme setup.
+ *
+ * @return void
+ */
+add_action('after_setup_theme', function (): void {
     /**
-     * Enable features from Soil when plugin is activated
+     * Enable features from the Soil plugin if activated.
      * @link https://roots.io/plugins/soil/
      */
-    add_theme_support('soil-clean-up');
-    add_theme_support('soil-jquery-cdn');
-    add_theme_support('soil-nav-walker');
-    add_theme_support('soil-nice-search');
-    add_theme_support('soil-relative-urls');
+    add_theme_support('soil', [
+        'clean-up',
+        'nav-walker',
+        'nice-search',
+        'relative-urls'
+    ]);
 
     /**
-     * Enable plugins to manage the document title
-     * @link https://developer.wordpress.org/reference/functions/add_theme_support/#title-tag
+     * Disable full-site editing support.
+     *
+     * @link https://wptavern.com/gutenberg-10-5-embeds-pdfs-adds-verse-block-color-options-and-introduces-new-patterns
      */
-    add_theme_support('title-tag');
+    remove_theme_support('block-templates');
 
     /**
-     * Register navigation menus
+     * Register the navigation menus.
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
      */
     register_nav_menus([
@@ -65,99 +82,95 @@ add_action('after_setup_theme', function () {
     ]);
 
     /**
-     * Enable post thumbnails
+     * Disable the default block patterns.
+     * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-the-default-block-patterns
+     */
+    remove_theme_support('core-block-patterns');
+
+    /**
+     * Enable plugins to manage the document title.
+     * @link https://developer.wordpress.org/reference/functions/add_theme_support/#title-tag
+     */
+    add_theme_support('title-tag');
+
+    /**
+     * Enable post thumbnail support.
      * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
      */
     add_theme_support('post-thumbnails');
 
     /**
-     * Enable HTML5 markup support
-     * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
+     * Enable responsive embed support.
+     * @link https://wordpress.org/gutenberg/handbook/designers-developers/developers/themes/theme-support/#responsive-embedded-content
      */
-    add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
+    add_theme_support('responsive-embeds');
 
     /**
-     * Enable selective refresh for widgets in customizer
+     * Enable HTML5 markup support.
+     * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
+     */
+    add_theme_support('html5', [
+        'caption',
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'search-form',
+        'script',
+        'style'
+    ]);
+
+    /**
+     * Enable selective refresh for widgets in customizer.
      * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
      */
     add_theme_support('customize-selective-refresh-widgets');
 
     /**
-     * Use main stylesheet for visual editor
-     * @see resources/assets/styles/layouts/_tinymce.scss
-     */
-    add_editor_style(asset_path('editor.css'));
-
-    /**
      * Register custom image sizes
+     * @see app/medias.php
      */
     set_image_sizes();
 }, 20);
 
 /**
- * Enqueue block editor assets
- */
-add_action('enqueue_block_editor_assets', function () {
-    if (!sage('assets')->is('hot')) {
-        wp_enqueue_style('sage/block-editor', asset_path('block-editor.css'));
-    }
-});
-
-/**
- * Register sidebars
+ * Register the theme sidebars.
+ *
+ * @return void
  */
 add_action('widgets_init', function () {
     $config = [
         'before_widget' => '<section class="widget %1$s %2$s">',
-        'after_widget'  => '</section>',
-        'before_title'  => '<h3>',
-        'after_title'   => '</h3>'
+        'after_widget' => '</section>',
+        'before_title' => '<h3>',
+        'after_title' => '</h3>'
     ];
+
     register_sidebar([
-        'name'          => __('Primary', 'sage'),
-        'id'            => 'sidebar-primary'
+        'name' => __('Primary', 'sage'),
+        'id' => 'sidebar-primary'
     ] + $config);
+
     register_sidebar([
-        'name'          => __('Footer', 'sage'),
-        'id'            => 'sidebar-footer'
+        'name' => __('Footer', 'sage'),
+        'id' => 'sidebar-footer'
     ] + $config);
 });
 
-/**
- * Updates the `$post` variable on each iteration of the loop.
- * Note: updated value is only available for subsequently loaded views, such as partials
- */
-add_action('the_post', function ($post) {
-    sage('blade')->share('post', $post);
-});
 
 /**
- * Setup Sage options
+ * Overrides
  */
-add_action('after_setup_theme', function () {
+add_action('init', function () {
     /**
-     * Add ExtendedJsonManifest to Sage container
+     * Cleanup global styles
+     * @link https://github.com/WordPress/gutenberg/issues/36834
      */
-    sage()->singleton('sage.assets', function () {
-        return new ExtendedJsonManifest(config('assets.manifest'), config('assets.uri'));
-    });
+    remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
+    remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
+    remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
 
     /**
-     * Add Blade to Sage container
+     * Cleanup media formats
      */
-    sage()->singleton('sage.blade', function (Container $app) {
-        $cachePath = config('view.compiled');
-        if (!file_exists($cachePath)) {
-            wp_mkdir_p($cachePath);
-        }
-        (new BladeProvider($app))->register();
-        return new Blade($app['view']);
-    });
-
-    /**
-     * Create @asset() Blade directive
-     */
-    sage('blade')->compiler()->directive('asset', function ($asset) {
-        return "<?= " . __NAMESPACE__ . "\\asset_path({$asset}); ?>";
-    });
+    reset_image_sizes();
 });

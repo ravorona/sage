@@ -1,15 +1,18 @@
 {
     "name": "@ravorona/sage",
-    "version": "2.2.0",
+    "version": "3.0.0",
     "description": "Wordpress theme based on Sage starter theme using Vite",
     "license": "MIT",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
         "serve": "vite preview",
-        "lint:js": "eslint --ext .js,.ts --ignore-path .gitignore .",
-        "lint:css": "stylelint **/*.{scss,css} --ignore-path .gitignore",
-        "lint": "yarn lint:js && yarn lint:css"
+        "lint:js": "eslint --ext .js,.ts .",
+        "lint:css": "stylelint **/*.{scss,css}",
+        "lint": "yarn lint:js && yarn lint:css",
+        "translate": "yarn translate:pot && yarn translate:js",
+        "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --ignore-domain --include=\"app,resources\"",
+        "translate:js": "wp i18n make-json ./resources/lang --pretty-print"
     },
     "devDependencies": {
         "@ravorona/eslint-config-typescript": "^4.2.0",
@@ -24,6 +27,8 @@
         "postcss-inline-svg": "^5.0.0",
         "postcss-scss": "^4.0.3",
         "prettier": "^2.5.1",
+        "rollup-plugin-copy": "^3.4.0",
+        "rollup-plugin-output-manifest": "^2.0.0",
         "sass": "^1.49.9",
         "stylelint": "^14.5.3",
         "stylelint-config-recommended-scss": "^6.0.0",

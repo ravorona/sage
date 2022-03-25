@@ -1,6 +1,0 @@
-{
-    "namespace": "sage",
-    "publicPath": "/app/themes/sage",
-    "devUrl": "http://example.test",
-    "proxyUrl": "http://localhost:3000"
-}

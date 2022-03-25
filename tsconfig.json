@@ -19,17 +19,20 @@
         ],
         "paths": {
             "@scripts/*": [
-                "resources/assets/scripts/*"
+                "resources/scripts/*"
             ],
             "@types/*": [
-                "resources/assets/types/*"
+                "resources/types/*"
             ]
         }
     },
     "include": [
-        "resources/assets/**/*.ts",
-        "resources/assets/**/*.d.ts",
-        "resources/assets/**/*.tsx",
-        "resources/assets/**/*.vue"
+        "resources/**/*.ts",
+        "resources/**/*.d.ts"
+    ],
+    "references": [
+        {
+            "path": "tsconfig.node.json"
+        }
     ]
 }

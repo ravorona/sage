@@ -1,67 +1,67 @@
 name: Development
 
 on:
-  push:
-    branches: [ develop ]
+    push:
+        branches: [develop]
 
 jobs:
-  sage:
-    name: Sage (PHP ${{ matrix.php-versions }})
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php-versions: ['7.4']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    sage:
+        name: Sage (PHP ${{ matrix.php-versions }})
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                php-versions: ["8.1"]
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
 
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-versions }}
+            - name: Setup PHP, with composer and extensions
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-versions }}
 
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+            - name: Get composer cache directory
+              id: composer-cache
+              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-      - name: Cache composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
+            - name: Cache composer dependencies
+              uses: actions/cache@v2
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+                  restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+            - name: Install Composer dependencies
+              run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-      - name: PHP Review
-        run: composer test
+            - name: PHP Review
+              run: composer lint
 
-  assets:
-    name: Assets (Node ${{ matrix.node-versions }})
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        node-versions: ['12', '14']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    assets:
+        name: Assets (Node ${{ matrix.node-versions }})
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                node-versions: ["12", "14", "16"]
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-nodemodules-${{ hashFiles('yarn.lock') }}
-          restore-keys: ${{ runner.OS }}-nodemodules
+            - name: Cache node modules
+              uses: actions/cache@v2
+              with:
+                  path: node_modules
+                  key: ${{ runner.OS }}-nodemodules-${{ hashFiles('yarn.lock') }}
+                  restore-keys: ${{ runner.OS }}-nodemodules
 
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-versions }}
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-versions }}
 
-      - name: Install dependencies
-        run: yarn
+            - name: Install dependencies
+              run: yarn
 
-      - name: Assets review
-        run: yarn lint
+            - name: Assets review
+              run: yarn lint

@@ -1,8 +1,9 @@
 <?php
+
 /*
  * MIT License
  *
- * Copyright (c) 2021 яαvoroηα
+ * Copyright (c) 2022 яαvoroηα
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
  * this software and associated documentation files (the "Software"), to deal in
@@ -27,12 +28,12 @@ namespace App;
 /**
  * Image ratio
  *
- * @param int    $dimension
+ * @param int $dimension
  * @param string $type
  *
  * @return float
  */
-function ratio($dimension, $type = 'standard')
+function ratio(int $dimension, string $type = 'standard'): float
 {
     switch ($type) {
         case 'free':
@@ -65,7 +66,7 @@ function ratio($dimension, $type = 'standard')
  *
  * @return void
  */
-function reset_image_sizes()
+function reset_image_sizes(): void
 {
     /**
      * Remove unused
@@ -98,7 +99,7 @@ function reset_image_sizes()
  *
  * @return void
  */
-function set_image_sizes()
+function set_image_sizes(): void
 {
     $formats = ['free', 'wide', 'square', 'portrait'];
     $crop = array('center', 'center');
@@ -118,13 +119,12 @@ function set_image_sizes()
 /**
  * Get attachment
  *
- * @param int         $id
- * @param string      $size
+ * @param string $id
+ * @param string $size
  * @param string|null $format
- *
  * @return string
  */
-function get_attachment($id, $size, $format = null)
+function get_attachment(string $id, string $size, string $format = null): string
 {
     $attachment = $size;
 
@@ -138,15 +138,22 @@ function get_attachment($id, $size, $format = null)
 /**
  * Get media
  *
- * @param int         $id         Media ID
- * @param string      $type       Media format
- * @param bool|string $alt        Alternative text
- * @param bool|array  $attributes Additional attributes
- *
- * @return string <picture> markup
+ * @param string $id
+ * @param string $type
+ * @param string|null $alt
+ * @param array|null $attributes
+ * @param boolean $lazy
+ * @param string|null $caption
+ * @return string
  */
-function get_media($id, $type = 'standard', $alt = false, $attributes = false, $lazy = true, $caption = false)
-{
+function get_media(
+    string $id,
+    string $type = 'standard',
+    ?string $alt = null,
+    ?array $attributes = null,
+    bool $lazy = true,
+    ?string $caption = null
+): string {
     $src = wp_get_attachment_image_src($id, 'full');
 
     if ($src) {
@@ -173,46 +180,55 @@ function get_media($id, $type = 'standard', $alt = false, $attributes = false, $
             $srcset = $src[0];
         }
 
-        $media = '<figure class="media-element ' . $orientation . ' ' . $type . '"';
-        $media .= ' data-width="' . $src[1] . '" data-height="' . $src[2] . '">';
-        $media .= '<picture class="media">';
-
-        if (get_post_mime_type($id) !== 'image/gif') {
-            $media .= '<source sizes="' . $sizes . '" srcset="' . $srcset . '">';
-        }
-
-        $media .= '<img src="' . $src[0] . '"';
-
-        if ($alt) {
-            $media .= ' alt="' . $alt . '"';
+        if (get_post_mime_type($id) === 'image/svg+xml') {
+            $media = '<img class="media--element-svg" src="' . $src[0] . '">';
         } else {
-            $media .= ' alt=""';
-        }
+            $media = '<figure class="media--element ' . $orientation . ' ' . $type . '"';
+            $media .= ' data-width="' . $src[1] . '" data-height="' . $src[2] . '"';
+            $media .= ' data-type="' . get_post_mime_type($id) . '">';
+            $media .= '<picture class="media--object">';
 
-        if ($lazy) {
-            $media .= ' loading="lazy"';
-        }
-
-        if ($attributes) {
-            if (is_array($attributes)) {
-                foreach ($attributes as $key => $attribute) {
-                    $media .= ' ' . $key . '="' . $attribute . '"';
-                }
-            } else {
-                $media .= ' ' . $attributes;
+            if (get_post_mime_type($id) !== 'image/gif') {
+                $media .= '<source';
+                $media .= ' sizes="' . $sizes . '"';
+                // $media .= ' srcset="' . preg_replace(array('/.jpg /', '/.png /'), '.webp ', $srcset) . '"';
+                $media .= ' srcset="' . $srcset . '"';
+                $media .= '>';
             }
+
+            $media .= '<img src="' . $src[0] . '"';
+
+            if ($alt) {
+                $media .= ' alt="' . $alt . '"';
+            } else {
+                $media .= ' alt=""';
+            }
+
+            if ($lazy) {
+                $media .= ' loading="lazy"';
+            }
+
+            if ($attributes) {
+                if (is_array($attributes)) {
+                    foreach ($attributes as $key => $attribute) {
+                        $media .= ' ' . $key . '="' . $attribute . '"';
+                    }
+                } else {
+                    $media .= ' ' . $attributes;
+                }
+            }
+
+            $media .= '>';
+            $media .= '</picture>';
+
+            if ($caption && !empty($caption)) {
+                $media .= '<figcaption>' . $caption . '</figcaption>';
+            }
+
+            $media .= '</figure>';
         }
-
-        $media .= '>';
-        $media .= '</picture>';
-
-        if ($caption && !empty($caption)) {
-            $media .= '<figcaption>' . $caption . '</figcaption>';
-        }
-
-        $media .= '</figure>';
     } else {
-        $media = '<div class="media-element"><div class="media media-placeholder"></div></div>';
+        $media = '<div class="media--element"><div class="media--object media--placeholder"></div></div>';
     }
 
     return $media;

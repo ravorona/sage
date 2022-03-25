@@ -1,9 +1,9 @@
-
-.DS_Store
-.cache-loader
+# Env variables
+.env
 
 # Dist folder
 dist
+public
 
 # Dependencies
 node_modules

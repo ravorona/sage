@@ -1,5 +1,3 @@
-<?php
-
 /*
  * MIT License
  *
@@ -23,27 +21,12 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-namespace App;
+import '@styles/main.scss'
+import Guide from '@scripts/guide'
+
+const { DEV } = import.meta.env
 
 /**
- * Check hot reload status
- *
- * @return boolean
+ * Enable guide in dev mode
  */
-function hmr_enabled(): bool
-{
-    return env('HMR_ENABLED') ?: false;
-}
-
-/**
- * Build assets hmr uri
- *
- * @param string $asset
- * @return string
- */
-function hmr_assets(string $asset): string
-{
-    $entrypoint = env('HMR_ENTRYPOINT');
-
-    return $entrypoint ? "{$entrypoint}/{$asset}" : asset($asset);
-}
+DEV && new Guide().start()
