@@ -1,4 +1,5 @@
 <?php
+
 /*
  * MIT License
  *
@@ -145,8 +146,14 @@ function get_attachment(string $id, string $size, string $format = null): string
  * @param string|null $caption
  * @return string
  */
-function get_media(string $id, string $type = 'standard', ?string $alt = null, ?array $attributes = null, bool $lazy = true, ?string $caption = null): string
-{
+function get_media(
+    string $id,
+    string $type = 'standard',
+    ?string $alt = null,
+    ?array $attributes = null,
+    bool $lazy = true,
+    ?string $caption = null
+): string {
     $src = wp_get_attachment_image_src($id, 'full');
 
     if ($src) {
