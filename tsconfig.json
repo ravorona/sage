@@ -28,8 +28,11 @@
     },
     "include": [
         "resources/**/*.ts",
-        "resources/**/*.d.ts",
-        "resources/**/*.tsx",
-        "resources/**/*.vue"
+        "resources/**/*.d.ts"
+    ],
+    "references": [
+        {
+            "path": "tsconfig.node.json"
+        }
     ]
 }

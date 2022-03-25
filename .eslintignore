@@ -1,1 +1,5 @@
-vue.config.js
+node_modules
+vendor
+dist
+public
+vite-env.d.ts
