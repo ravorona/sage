@@ -13,8 +13,24 @@ use function Roots\bundle;
  *
  * @return void
  */
-add_action('wp_enqueue_scripts', function () {
-    bundle('main')->enqueue();
+add_action('wp_enqueue_scripts', function (): void {
+    /**
+     * Cleanup styles
+     */
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+
+    /**
+     * Enqueue theme stylesheets
+     */
+    if (hmr_enabled()) {
+        $asset = 'resources/scripts/main.ts';
+        $namespace = strtolower(wp_get_theme()->get('Name'));
+
+        wp_enqueue_script($namespace, hmr_assets($asset), array(), null, true);
+    } else {
+        bundle('main')->enqueue();
+    }
 }, 100);
 
 /**
@@ -22,8 +38,15 @@ add_action('wp_enqueue_scripts', function () {
  *
  * @return void
  */
-add_action('enqueue_block_editor_assets', function () {
-    bundle('editor')->enqueue();
+add_action('enqueue_block_editor_assets', function (): void {
+    if (hmr_enabled()) {
+        $asset = 'resources/scripts/editor.ts';
+        $namespace = strtolower(wp_get_theme()->get('Name'));
+
+        wp_enqueue_script($namespace, hmr_assets($asset), array(), null, true);
+    } else {
+        bundle('editor')->enqueue();
+    }
 }, 100);
 
 /**
@@ -31,7 +54,7 @@ add_action('enqueue_block_editor_assets', function () {
  *
  * @return void
  */
-add_action('after_setup_theme', function () {
+add_action('after_setup_theme', function (): void {
     /**
      * Enable features from the Soil plugin if activated.
      * @link https://roots.io/plugins/soil/
@@ -101,6 +124,12 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
      */
     add_theme_support('customize-selective-refresh-widgets');
+
+    /**
+     * Register custom image sizes
+     * @see app/medias.php
+     */
+    set_image_sizes();
 }, 20);
 
 /**
@@ -125,4 +154,23 @@ add_action('widgets_init', function () {
         'name' => __('Footer', 'sage'),
         'id' => 'sidebar-footer'
     ] + $config);
+});
+
+
+/**
+ * Overrides
+ */
+add_action('init', function () {
+    /**
+     * Cleanup global styles
+     * @link https://github.com/WordPress/gutenberg/issues/36834
+     */
+    remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
+    remove_action('wp_body_open', 'wp_global_styles_render_svg_filters');
+    remove_action('wp_footer', 'wp_enqueue_global_styles', 1);
+
+    /**
+     * Cleanup media formats
+     */
+    reset_image_sizes();
 });
