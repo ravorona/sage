@@ -1,3 +1,10 @@
+## [3.1.0](///compare/3.0.0...3.1.0) (2022-04-02)
+
+### Features
+
+-   enable css source map 2512731
+-   vite@2.9 ba3841e
+
 ## [3.0.0](///compare/2.2.0...3.0.0) (2022-03-25)
 
 ### Features
