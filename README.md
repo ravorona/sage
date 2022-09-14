@@ -8,7 +8,7 @@
 ## Requirements
 
 -   [Acorn](https://docs.roots.io/acorn/2.x/installation/) v2
--   [PHP](https://secure.php.net/manual/en/install.php) >= 7.4.0 (with [`php-mbstring`](https://secure.php.net/manual/en/book.mbstring.php) enabled)
+-   [PHP](https://secure.php.net/manual/en/install.php) >= 8.0.2 (with [`php-mbstring`](https://secure.php.net/manual/en/book.mbstring.php) enabled)
 -   [Composer](https://getcomposer.org/download/)
 -   [Vite](https://vitejs.dev) >= 2.6.9
 -   [Node.js](http://nodejs.org/) >= 16.0.0
