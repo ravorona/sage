@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import path from 'path'
 import { defineConfig, ServerOptions } from 'vite'
-import outputManifest, { Bundle, KeyValueDecorator } from 'rollup-plugin-output-manifest'
+import outputManifest, { KeyValueDecorator, OutputManifestParam } from 'rollup-plugin-output-manifest'
 import copy from 'rollup-plugin-copy'
 
 dotenv.config({ path: '../../../../.env' })
@@ -28,8 +28,11 @@ process.env.HTTPS_KEY &&
         cert: process.env.HTTPS_CERT
     })
 
+const formatName = (name: string): string => name.replace(`${assets.scripts}/`, '').replace(/.css$/gm, '')
+
 export default defineConfig({
     publicDir: false,
+
     resolve: {
         alias: {
             '@': path.resolve(__dirname, assets.base),
@@ -53,19 +56,20 @@ export default defineConfig({
             plugins: [
                 outputManifest({
                     fileName: 'manifest.json',
-                    map: (bundle: Bundle): Bundle => {
-                        bundle.name = bundle.name.replace(/.css$/gm, '')
-
-                        return bundle
-                    }
+                    generate:
+                        (keyValueDecorator: KeyValueDecorator, seed: object, opt: OutputManifestParam) => chunks =>
+                            chunks.reduce((manifest, { name, fileName }) => {
+                                return name
+                                    ? {
+                                          ...manifest,
+                                          ...keyValueDecorator(formatName(name), fileName, opt)
+                                      }
+                                    : manifest
+                            }, seed)
                 }),
                 outputManifest({
                     fileName: 'entrypoints.json',
-                    map: (bundle: Bundle): Bundle => {
-                        bundle.name = bundle.name.replace(/.css$/gm, '')
-
-                        return bundle
-                    },
+                    nameWithExt: true,
                     generate: (_: KeyValueDecorator, seed: object) => chunks =>
                         chunks.reduce((manifest, { name, fileName }) => {
                             const output = {}
@@ -73,15 +77,10 @@ export default defineConfig({
                             const css = manifest[name] ? manifest[name].css : []
                             const dependencies = manifest[name] ? manifest[name].dependencies : []
 
-                            if (fileName.match(/.js$/gm)) {
-                                js.push(fileName)
-                            }
+                            fileName.match(/.js$/gm) && js.push(fileName)
+                            fileName.match(/.css$/gm) && css.push(fileName)
 
-                            if (fileName.match(/.css$/gm)) {
-                                css.push(fileName)
-                            }
-
-                            output[name] = { js, css, dependencies }
+                            name && (output[formatName(name)] = { js, css, dependencies })
 
                             return {
                                 ...manifest,
