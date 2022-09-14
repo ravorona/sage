@@ -82,11 +82,14 @@ themes/your-theme-name/   # → Root of your Sage based theme
 To enable hot reload add the following variables in your `.env`
 
 ```sh
+# Dev server port
+HMR_PORT=3000
+
 # if true hot reload is active
 HMR_ENABLED=true
 
 # Endpoint where the bundler serve your assets
-HMR_ENTRYPOINT=https://example.com:3000
+HMR_ENTRYPOINT=https://example.com:${HMR_PORT}
 ```
 
 To dev server `https` mode add valid certificates path with
