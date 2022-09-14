@@ -10,8 +10,8 @@
 -   [Acorn](https://docs.roots.io/acorn/2.x/installation/) v2
 -   [PHP](https://secure.php.net/manual/en/install.php) >= 8.0.2 (with [`php-mbstring`](https://secure.php.net/manual/en/book.mbstring.php) enabled)
 -   [Composer](https://getcomposer.org/download/)
--   [Vite](https://vitejs.dev) >= 2.6.9
--   [Node.js](http://nodejs.org/) >= 16.0.0
+-   [Vite](https://vitejs.dev) >= 3.1.0
+-   [Node.js](http://nodejs.org/) >= 14.0.0
 -   [Yarn](https://yarnpkg.com/en/docs/install)
 
 ## Theme installation
@@ -88,6 +88,15 @@ HMR_ENABLED=true
 # Endpoint where the bundler serve your assets
 HMR_ENTRYPOINT=https://example.com:3000
 ```
+
+To dev server `https` mode add valid certificates path with
+
+```sh
+# Certificates
+HTTPS_CERT=path_to_crt
+HTTPS_KEY=path_to_key
+```
+
 
 Update path to `.env` in `vite.config.ts`
 
