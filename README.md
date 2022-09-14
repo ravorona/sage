@@ -89,6 +89,15 @@ HMR_ENABLED=true
 HMR_ENTRYPOINT=https://example.com:3000
 ```
 
+To dev server `https` mode add valid certificates path with
+
+```sh
+# Certificates
+HTTPS_CERT=path_to_crt
+HTTPS_KEY=path_to_key
+```
+
+
 Update path to `.env` in `vite.config.ts`
 
 ```javascript
