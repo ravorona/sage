@@ -20,7 +20,7 @@ const server: ServerOptions = {
 }
 
 process.env.DOMAIN && (server.host = process.env.DOMAIN)
-process.env.DEV_PORT && (server.port = parseInt(process.env.DEV_PORT))
+process.env.HMR_PORT && (server.port = parseInt(process.env.HMR_PORT))
 process.env.HTTPS_KEY &&
     process.env.HTTPS_CERT &&
     (server.https = {
