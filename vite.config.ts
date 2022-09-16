@@ -13,13 +13,14 @@ const assets = {
 }
 
 const server: ServerOptions = {
+    strictPort: true,
     fs: {
         strict: true,
         allow: ['node_modules', assets.base]
     }
 }
 
-process.env.DOMAIN && (server.host = process.env.DOMAIN)
+process.env.HOST && (server.host = process.env.HOST)
 process.env.HMR_PORT && (server.port = parseInt(process.env.HMR_PORT))
 process.env.HTTPS_KEY &&
     process.env.HTTPS_CERT &&
@@ -32,7 +33,6 @@ const formatName = (name: string): string => name.replace(`${assets.scripts}/`, 
 
 export default defineConfig({
     publicDir: false,
-
     resolve: {
         alias: {
             '@': path.resolve(__dirname, assets.base),
