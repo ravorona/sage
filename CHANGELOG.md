@@ -1,3 +1,15 @@
+### [4.0.1](https://github.com/ravorona/sage/compare/4.0.0...4.0.1) (2022-10-02)
+
+
+### Features
+
+* Stylelint ignore !default annotation ([d5994c5](https://github.com/ravorona/sage/commit/d5994c503f00c28ee2f5acaa464eff7ed4832035))
+
+
+### Bug Fixes
+
+* Style errors ([1fb86e6](https://github.com/ravorona/sage/commit/1fb86e68e5799fe1ebd38b6530e6aa246a1e9264))
+
 ## [4.0.0](https://github.com/ravorona/sage/compare/3.2.1...4.0.0) (2022-10-02)
 
 

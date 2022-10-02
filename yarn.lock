@@ -97,10 +97,10 @@
   resolved "https://registry.yarnpkg.com/@ravorona/eslint-config/-/eslint-config-4.0.4.tgz#5938f81a04a2d5792ad6a414ec670e74887f35f0"
   integrity sha512-Og1XYf6Q+8fNZMQHyxspydeSQq/v8zNAaCqs8U1L+cuIQGJuq9mEXjIFitAuexoRPhSv/Rg4qFX6leslSE1Thw==
 
-"@ravorona/stylelint-config@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@ravorona/stylelint-config/-/stylelint-config-2.2.1.tgz#a2732b2f21bb1594d69a8bff6f05da13521ddb43"
-  integrity sha512-ndoGxbRvR9TwYXzlWv7XgkTDbXQ/3bEpy6yM/4UgBGpdm1CH+8gRkbRAbpmEEz9zljlzCNiXAfYZHq2J/pSSCQ==
+"@ravorona/stylelint-config@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@ravorona/stylelint-config/-/stylelint-config-2.2.3.tgz#9c7b71f8fa62098e8c161e05d7c9b4d61a8e7b96"
+  integrity sha512-jeqj2jluK6xIDlZO2GmSY3Bpss3EKNWzl2sfhA/98Lp0l4ijZEcqbyG+duIjYlWftY/bDs1WAfJYzivJ2YpzaA==
 
 "@types/fs-extra@^8.0.1":
   version "8.1.2"
@@ -2150,10 +2150,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vite@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-3.1.0.tgz#3138b279072941d57e76bcf7f66f272fc6a17fe2"
-  integrity sha512-YBg3dUicDpDWFCGttmvMbVyS9ydjntwEjwXRj2KBFwSB8SxmGcudo1yb8FW5+M/G86aS8x828ujnzUVdsLjs9g==
+vite@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-3.1.4.tgz#b75824b819d8354a6f36e4b988943c7e4947e155"
+  integrity sha512-JoQI08aBjY9lycL7jcEq4p9o1xUjq5aRvdH4KWaXtkSx7e7RpAh9D3IjzDWRD4Fg44LS3oDAIOG/Kq1L+82psA==
   dependencies:
     esbuild "^0.15.6"
     postcss "^8.4.16"
