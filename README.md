@@ -79,30 +79,19 @@ themes/your-theme-name/   # → Root of your Sage based theme
 
 ### Hot reload mode
 
-To enable hot reload add the following variables in your `.env`
+#### Project Side
+Add the following variables in your project `.env`
 
 ```sh
-# if true hot reload is active
+# If true hot reload is active
 HMR_ENABLED=true
 
 # Endpoint where the bundler serve your assets
-HMR_ENTRYPOINT=https://example.com:3000
+HMR_ENTRYPOINT=http://example.com:3000
 ```
 
-To dev server `https` mode add valid certificates path with
-
-```sh
-# Certificates
-HTTPS_CERT=path_to_crt
-HTTPS_KEY=path_to_key
-```
-
-
-Update path to `.env` in `vite.config.ts`
-
-```javascript
-dotenv.config({ path: '../../../../.env' })
-```
+#### Theme side
+For advanced dev server configuration, copy `.env.example` according to (Vite naming convention and loading order)[https://vitejs.dev/guide/env-and-mode.html#env-files] and update variables
 
 ## Documentation
 
