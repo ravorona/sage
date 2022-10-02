@@ -23,25 +23,25 @@
 
 .guide {
     position: fixed;
-    pointer-events: none;
+    z-index: 10000;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
-    z-index: 10000;
+    left: 0;
     visibility: hidden;
-    opacity: 0;
     transition: .4s opacity ease-out;
+    pointer-events: none;
+    opacity: 0;
 
     &::before,
     &::after {
-        content: '';
         position: absolute;
-        left: 0;
         right: 0;
+        left: 0;
+        display: none;
         height: 1px;
         background: red;
-        display: none;
+        content: '';
     }
 
     &::before {
@@ -54,14 +54,14 @@
 
     &-wrapper {
         @include grid;
-        row-gap: 0;
         height: 100%;
+        row-gap: 0;
     }
 
     &-element {
-        background: var(--guide-background-color, rgba(150 0 0 / .1));
-        border-left: 1px solid var(--guide-outline-color, rgba(150 0 0 / .2));
         border-right: 1px solid var(--guide-outline-color, rgba(150 0 0 / .2));
+        border-left: 1px solid var(--guide-outline-color, rgba(150 0 0 / .2));
+        background: var(--guide-background-color, rgba(150 0 0 / .1));
     }
 
     .container {
@@ -75,7 +75,7 @@
 }
 
 .debug {
-    *:not(.container):not(.main-content):not(.main-header):not(.main-footer):not(.guide):not([class^='guide-']):hover {
+    *:not(.container, .main-content, .main-header, .main-footer, .guide, [class^='guide-']):hover {
         background-color: var(--guide-debug-color, rgba(150 150 255 / .1));
     }
 }
