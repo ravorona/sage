@@ -1,3 +1,10 @@
+### [4.0.2](https://github.com/ravorona/sage/compare/4.0.1...4.0.2) (2023-01-26)
+
+
+### Bug Fixes
+
+* Package version error ([ea52a2f](https://github.com/ravorona/sage/commit/ea52a2f525b1e48c1b21006a8fbb2144bbd2ba46))
+
 ### [4.0.1](https://github.com/ravorona/sage/compare/4.0.0...4.0.1) (2022-10-02)
 
 
