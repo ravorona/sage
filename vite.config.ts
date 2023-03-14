@@ -79,15 +79,22 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                         nameWithExt: true,
                         generate: (_: KeyValueDecorator, seed: object) => chunks =>
                             chunks.reduce((manifest, { name, fileName }) => {
+                                const formatedName = name && formatName(name)
                                 const output = {}
-                                const js = manifest[name] ? manifest[name].js : []
-                                const css = manifest[name] ? manifest[name].css : []
-                                const dependencies = manifest[name] ? manifest[name].dependencies : []
+                                const js =
+                                    formatedName && manifest[formatedName]?.js?.length ? manifest[formatedName].js : []
+                                const css =
+                                    formatedName && manifest[formatedName]?.css?.length
+                                    ? manifest[formatedName].css
+                                    : []
+                                const dependencies =
+                                    formatedName && manifest[formatedName] ? manifest[formatedName].dependencies : []
+                                const inject = { js, css, dependencies }
 
                                 fileName.match(/.js$/gm) && js.push(fileName)
                                 fileName.match(/.css$/gm) && css.push(fileName)
 
-                                name && (output[formatName(name)] = { js, css, dependencies })
+                                name && (output[formatedName] = inject)
 
                                 return {
                                     ...manifest,
