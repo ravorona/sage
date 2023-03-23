@@ -91,7 +91,7 @@ HMR_ENTRYPOINT=http://example.com:3000
 ```
 
 #### Theme side
-For advanced dev server configuration, copy `.env.example` according to (Vite naming convention and loading order)[https://vitejs.dev/guide/env-and-mode.html#env-files] and update variables
+For advanced dev server configuration, copy `.env.example` according to [Vite naming convention and loading order](https://vitejs.dev/guide/env-and-mode.html#env-files) and update variables
 
 ## Documentation
 
