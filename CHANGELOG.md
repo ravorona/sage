@@ -1,3 +1,10 @@
+### [4.0.3](https://github.com/ravorona/sage/compare/4.0.2...4.0.3) (2023-03-23)
+
+
+### Bug Fixes
+
+* Empty array output in entrypoints ([c5ff50f](https://github.com/ravorona/sage/commit/c5ff50f6009d4e7a2847f1f5ddb57434a1cd708d))
+
 ### [4.0.2](https://github.com/ravorona/sage/compare/4.0.1...4.0.2) (2023-01-26)
 
 
