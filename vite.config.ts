@@ -18,10 +18,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import { ConfigEnv, defineConfig, loadEnv, UserConfigExport } from 'vite'
 import * as path from 'path'
-import outputManifest, { KeyValueDecorator, OutputManifestParam } from 'rollup-plugin-output-manifest'
 import copy from 'rollup-plugin-copy'
+import outputManifest, { KeyValueDecorator, OutputManifestParam } from 'rollup-plugin-output-manifest'
+import { ConfigEnv, defineConfig, loadEnv, UserConfigExport } from 'vite'
 
 const assets = {
     base: 'resources',
@@ -85,8 +85,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                                     formatedName && manifest[formatedName]?.js?.length ? manifest[formatedName].js : []
                                 const css =
                                     formatedName && manifest[formatedName]?.css?.length
-                                    ? manifest[formatedName].css
-                                    : []
+                                        ? manifest[formatedName].css
+                                        : []
                                 const dependencies =
                                     formatedName && manifest[formatedName] ? manifest[formatedName].dependencies : []
                                 const inject = { js, css, dependencies }
