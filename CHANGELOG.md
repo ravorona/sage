@@ -1,3 +1,10 @@
+### [4.0.4](https://github.com/ravorona/sage/compare/4.0.3...4.0.4) (2023-03-24)
+
+
+### Features
+
+* Vite package upgrade ([d5e7917](https://github.com/ravorona/sage/commit/d5e7917a2367125aae9b5e53b8cb094bb24e0fd8))
+
 ### [4.0.3](https://github.com/ravorona/sage/compare/4.0.2...4.0.3) (2023-03-23)
 
 
