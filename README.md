@@ -16,7 +16,7 @@
 
 ## Theme installation
 
-- Make sure that you have [Acorn installed](https://roots.io/acorn/docs/installation/)
+- **Make sure that you have [Acorn installed](https://roots.io/acorn/docs/installation/)**
 - Install Sage using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
 
 ```shell
