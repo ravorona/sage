@@ -7,16 +7,17 @@
 
 ## Requirements
 
--   [Acorn](https://docs.roots.io/acorn/2.x/installation/) v2
--   [PHP](https://secure.php.net/manual/en/install.php) >= 8.0.2 (with [`php-mbstring`](https://secure.php.net/manual/en/book.mbstring.php) enabled)
+-   [Acorn](https://roots.io/acorn/docs/installation/) v3
+-   [PHP](https://secure.php.net/manual/en/install.php) >= 8.0 (with [`php-mbstring`](https://secure.php.net/manual/en/book.mbstring.php) enabled)
 -   [Composer](https://getcomposer.org/download/)
 -   [Vite](https://vitejs.dev) >= 3.1.0
--   [Node.js](http://nodejs.org/) >= 14.0.0
+-   [Node.js](http://nodejs.org/) >= 16.0.0
 -   [Yarn](https://yarnpkg.com/en/docs/install)
 
 ## Theme installation
 
-Install Sage using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
+- Make sure that you have [Acorn installed](https://roots.io/acorn/docs/installation/)
+- Install Sage using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
 
 ```shell
 # @ app/themes/ or wp-content/themes/
