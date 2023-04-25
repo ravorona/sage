@@ -133,6 +133,18 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                 strict: true,
                 allow: ['node_modules', assets.base]
             }
+
+            /***
+             * For windows user with files system watching not working
+             * https://vitejs.dev/config/server-options.html#server-watch
+             */
+
+            /*
+            watch: {
+                usePolling: true,
+                interval: 1000
+            }
+            */
         }
 
         devServerConfig.HMR_HOST && (config.server.host = devServerConfig.HMR_HOST)
