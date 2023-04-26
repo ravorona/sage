@@ -1,21 +1,22 @@
 /*
- * Copyright © 2022 яαvoroηα.
- * Permission is hereby granted, free of charge, to any person obtaining a copy of
- * this software and associated documentation files (the "Software"), to deal in
- * the Software without restriction, including without limitation the rights to
- * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software is furnished to do so,
- * subject to the following conditions:
+ * Copyright (c) 2023 яαvoroηα
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy of
+ *  this software and associated documentation files (the "Software"), to deal in
+ *  the Software without restriction, including without limitation the rights to
+ *  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ *  the Software, and to permit persons to whom the Software is furnished to do so,
+ *  subject to the following conditions:
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ *  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ *  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ *  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 import * as path from 'path'
@@ -26,7 +27,9 @@ import { ConfigEnv, defineConfig, loadEnv, UserConfigExport } from 'vite'
 const assets = {
     base: 'resources',
     scripts: 'resources/scripts',
-    styles: 'resources/styles'
+    styles: 'resources/styles',
+    images: 'resources/images',
+    fonts: 'resources/fonts'
 }
 
 const formatName = (name: string): string => name.replace(`${assets.scripts}/`, '').replace(/.css$/gm, '')
@@ -37,11 +40,14 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     const config: UserConfigExport = {
         appType: 'custom',
         publicDir: false,
+        base: './',
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, assets.base),
                 '@scripts': path.resolve(__dirname, assets.scripts),
-                '@styles': path.resolve(__dirname, assets.styles)
+                '@styles': path.resolve(__dirname, assets.styles),
+                '@fonts': path.resolve(__dirname, assets.fonts),
+                '@images': path.resolve(__dirname, assets.images)
             }
         },
         css: {
@@ -126,23 +132,43 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     }
 
     if (dev) {
-        config.server = {
-            host: '0.0.0.0',
-            strictPort: true,
-            fs: {
-                strict: true,
-                allow: ['node_modules', assets.base]
-            }
-        }
+        let host = 'localhost'
+        let port = 5173
+        const protocol = 'http'
+        const https = !!(devServerConfig.HMR_HTTPS_KEY && devServerConfig.HMR_HTTPS_CERT)
 
-        devServerConfig.HMR_HOST && (config.server.host = devServerConfig.HMR_HOST)
-        devServerConfig.HMR_PORT && (config.server.port = parseInt(devServerConfig.HMR_PORT))
-        devServerConfig.HMR_HTTPS_KEY &&
-            devServerConfig.HMR_HTTPS_CERT &&
+        devServerConfig.HMR_HOST && (host = devServerConfig.HMR_HOST)
+        devServerConfig.HMR_PORT && (port = parseInt(devServerConfig.HMR_PORT))
+
+        https &&
             (config.server.https = {
                 key: devServerConfig.HMR_HTTPS_KEY,
                 cert: devServerConfig.HMR_HTTPS_CERT
             })
+
+        config.server = {
+            host,
+            port,
+            https,
+            strictPort: true,
+            origin: `${protocol}://${host}:${port}`,
+            fs: {
+                strict: true,
+                allow: ['node_modules', assets.base]
+            }
+
+            /***
+             * For Windows user with files system watching not working
+             * https://vitejs.dev/config/server-options.html#server-watch
+             */
+
+            /*
+            watch: {
+                usePolling: true,
+                interval: 1000
+            }
+            */
+        }
     }
 
     return config

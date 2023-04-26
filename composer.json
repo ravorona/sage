@@ -1,6 +1,6 @@
 {
     "name": "ravorona/sage",
-    "version": "4.0.4",
+    "version": "4.1.0",
     "description": "Wordpress theme based on Sage starter theme using Vite",
     "license": "MIT",
     "authors": [
@@ -21,11 +21,10 @@
         }
     },
     "require": {
-        "php": "^7.4|^8.0",
-        "roots/acorn": "^2.0"
+        "php": "^8.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.6"
+        "squizlabs/php_codesniffer": "3.7.1"
     },
     "suggest": {
         "log1x/sage-directives": "A collection of useful Blade directives for WordPress and Sage (^1.0).",
@@ -40,7 +39,7 @@
     "prefer-stable": true,
     "scripts": {
         "lint": [
-            "phpcs"
+            "phpcs --extensions=php --standard=PSR12 app"
         ]
     },
     "extra": {
