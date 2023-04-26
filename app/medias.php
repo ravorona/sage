@@ -139,9 +139,9 @@ function get_attachment(string $id, string $size, string $format = null): string
  *
  * @param string $id
  * @param string $type
+ * @param boolean $lazy
  * @param string|null $alt
  * @param array|null $attributes
- * @param boolean $lazy
  * @param string|null $caption
  *
  * @return string
@@ -149,9 +149,9 @@ function get_attachment(string $id, string $size, string $format = null): string
 function get_media(
     string  $id,
     string  $type = 'standard',
+    bool    $lazy = true,
     ?string $alt = null,
     ?array  $attributes = null,
-    bool    $lazy = true,
     ?string $caption = null
 ): string
 {
