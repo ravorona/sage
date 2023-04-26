@@ -74,7 +74,7 @@ themes/your-theme-name/   # → Root of your Sage based theme
 
 ### Build commands
 
-- `yarn dev` — Start dev server
+- `yarn dev` — Start dev server and hot module replacement
 - `yarn build` — Compile assets
 - `yarn lint` — Lint stylesheets & javascripts
 - `yarn lint:css` — Lint stylesheets
@@ -87,18 +87,19 @@ themes/your-theme-name/   # → Root of your Sage based theme
 Add the following variables in your project `.env`
 
 ```sh
-# If true hot reload is active.
-# If not specified or set to false, and if the `public/manifest.json` file is missing, HMR is automatically enabled.
-HMR_ENABLED=true
-
 # Endpoint where the bundler serve your assets
-HMR_ENTRYPOINT=http://example.com:3000
+HMR_ENTRYPOINT=http://localhost:5173
 ```
 
 #### Theme side
 
 For advanced dev server configuration, copy `.env.example` according
 to [Vite naming convention and loading order](https://vitejs.dev/guide/env-and-mode.html#env-files) and update variables
+
+#### FYI
+
+Running HMR Mode remove the `public/manifest.json` file, so do not forget to re-run the assets compilation
+with `yarn build` if needed.
 
 ## Documentation
 

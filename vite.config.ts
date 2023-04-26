@@ -19,11 +19,14 @@
  *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+import { unlink } from 'fs'
 import * as path from 'path'
 import copy from 'rollup-plugin-copy'
 import outputManifest, { KeyValueDecorator, OutputManifestParam } from 'rollup-plugin-output-manifest'
 import { ConfigEnv, defineConfig, loadEnv, UserConfigExport } from 'vite'
 
+const publicDir = 'public'
+const manifestFile = 'manifest.json'
 const assets = {
     base: 'resources',
     scripts: 'resources/scripts',
@@ -56,7 +59,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         build: {
             sourcemap: 'inline',
             manifest: false,
-            outDir: 'public',
+            outDir: publicDir,
             assetsDir: '',
             rollupOptions: {
                 input: {
@@ -68,7 +71,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                 },
                 plugins: [
                     outputManifest({
-                        fileName: 'manifest.json',
+                        fileName: manifestFile,
                         generate:
                             (keyValueDecorator: KeyValueDecorator, seed: object, opt: OutputManifestParam) => chunks =>
                                 chunks.reduce((manifest, { name, fileName }) => {
@@ -114,15 +117,15 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                         targets: [
                             {
                                 src: path.resolve(__dirname, `${assets.base}/images/**/*`),
-                                dest: 'public/images'
+                                dest: `${publicDir}/images`
                             },
                             {
                                 src: path.resolve(__dirname, `${assets.base}/svg/**/*`),
-                                dest: 'public/svg'
+                                dest: `${publicDir}/svg`
                             },
                             {
                                 src: path.resolve(__dirname, `${assets.base}/fonts/**/*`),
-                                dest: 'public/fonts'
+                                dest: `${publicDir}/fonts`
                             }
                         ]
                     })
@@ -136,6 +139,10 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         let port = 5173
         const protocol = 'http'
         const https = !!(devServerConfig.HMR_HTTPS_KEY && devServerConfig.HMR_HTTPS_CERT)
+
+        unlink(`${publicDir}/${manifestFile}`, error =>
+            console.log(`🧹 Wipe ${manifestFile} :`, error ? `No ${manifestFile} in the public directory` : '✅')
+        )
 
         devServerConfig.HMR_HOST && (host = devServerConfig.HMR_HOST)
         devServerConfig.HMR_PORT && (port = parseInt(devServerConfig.HMR_PORT))

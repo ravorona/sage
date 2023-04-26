@@ -1,3 +1,10 @@
+## [4.2.0](https://github.com/ravorona/sage/compare/4.1.1...4.2.0) (2023-04-26)
+
+
+### Features
+
+* Enable/Disable hot module replacement automatically ([c926f03](https://github.com/ravorona/sage/commit/c926f036d7b74193287126dc328e9d57b0ccb7de))
+
 ### [4.1.1](https://github.com/ravorona/sage/compare/4.1.0...4.1.1) (2023-04-26)
 
 
