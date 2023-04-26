@@ -20,6 +20,13 @@
  */
 
 /**
- * Shared
+ * Functionnals
  */
-@import 'shared';
+@import 'functions';
+@import 'mixins';
+@import 'variables';
+
+/**
+ * Fonts
+ */
+@import 'fonts';
