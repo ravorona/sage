@@ -1,3 +1,19 @@
+## [4.1.0](https://github.com/ravorona/sage/compare/4.0.4...4.1.0) (2023-04-26)
+
+
+### Features
+
+* Dependencies update ([17a0d1c](https://github.com/ravorona/sage/commit/17a0d1ceb79298291fcb92560de83038ac1f7cef)), closes [#14](https://github.com/ravorona/sage/issues/14)
+* Documentation update ([c7b08d2](https://github.com/ravorona/sage/commit/c7b08d21b79488cb79435ff3aaa26be88c7a8d70))
+* Localized vars example ([763625f](https://github.com/ravorona/sage/commit/763625fff087332e32e1c27e3ab472e0fac6e9b5))
+* Sage 10.5.1 ([193958f](https://github.com/ravorona/sage/commit/193958f28829780d21832233a4533059f05ba30d)), closes [#13](https://github.com/ravorona/sage/issues/13)
+* Vite watch option example for windows os user ([603c16c](https://github.com/ravorona/sage/commit/603c16c5af9eca7f2f6a03ea00f3d17d26dcf62f))
+
+
+### Bug Fixes
+
+* Assets path in HMR Mode ([17907fa](https://github.com/ravorona/sage/commit/17907fa0b3e72a456ce7f82524711436af749dcc)), closes [#12](https://github.com/ravorona/sage/issues/12)
+
 ### [4.0.4](https://github.com/ravorona/sage/compare/4.0.3...4.0.4) (2023-03-24)
 
 
