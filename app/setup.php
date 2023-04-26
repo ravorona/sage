@@ -40,6 +40,11 @@ add_action('wp_enqueue_scripts', function (): void {
     wp_dequeue_style('wp-block-library');
     wp_dequeue_style('wp-block-library-theme');
 
+    $localized_object_name = 'sage';
+    $localized_vars = [
+        'primary' => __('Primary', 'sage')
+    ];
+
     /**
      * Enqueue theme stylesheets
      */
@@ -48,8 +53,9 @@ add_action('wp_enqueue_scripts', function (): void {
         $namespace = strtolower(wp_get_theme()->get('Name'));
 
         wp_enqueue_script($namespace, hmr_assets($asset), array(), null, true);
+        wp_localize_script($namespace, $localized_object_name, $localized_vars);
     } else {
-        bundle('main')->enqueue();
+        bundle('main')->enqueue()->localize($localized_object_name, $localized_vars);
     }
 }, 100);
 
