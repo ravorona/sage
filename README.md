@@ -2,21 +2,24 @@
 
 # 🧩 Wordpress Starter Theme
 
--   Based on [Sage](https://roots.io/sage/) version [10](https://github.com/roots/sage/)
--   Using [Vite](https://vitejs.dev)
+- Based on [Sage](https://roots.io/sage/) version [10](https://github.com/roots/sage/)
+- Using [Vite](https://vitejs.dev)
 
 ## Requirements
 
--   [Acorn](https://docs.roots.io/acorn/2.x/installation/) v2
--   [PHP](https://secure.php.net/manual/en/install.php) >= 8.0.2 (with [`php-mbstring`](https://secure.php.net/manual/en/book.mbstring.php) enabled)
--   [Composer](https://getcomposer.org/download/)
--   [Vite](https://vitejs.dev) >= 3.1.0
--   [Node.js](http://nodejs.org/) >= 14.0.0
--   [Yarn](https://yarnpkg.com/en/docs/install)
+- [Acorn](https://roots.io/acorn/docs/installation/) v3
+- [PHP](https://secure.php.net/manual/en/install.php) >= 8.0 (
+  with [`php-mbstring`](https://secure.php.net/manual/en/book.mbstring.php) enabled)
+- [Composer](https://getcomposer.org/download/)
+- [Vite](https://vitejs.dev) >= 3.1.0
+- [Node.js](http://nodejs.org/) >= 16.0.0
+- [Yarn](https://yarnpkg.com/en/docs/install)
 
 ## Theme installation
 
-Install Sage using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of your theme):
+- **Make sure that you have [Acorn installed](https://roots.io/acorn/docs/installation/)**
+- Install Sage using Composer from your WordPress themes directory (replace `your-theme-name` below with the name of
+  your theme):
 
 ```shell
 # @ app/themes/ or wp-content/themes/
@@ -66,24 +69,26 @@ themes/your-theme-name/   # → Root of your Sage based theme
 
 ## Theme development
 
--   Run `yarn` from the theme directory to install dependencies
--   Update `vite.config.ts` for bundler fine tuning
+- Run `yarn` from the theme directory to install dependencies
+- Update `vite.config.ts` for bundler fine tuning
 
 ### Build commands
 
--   `yarn dev` — Start dev server
--   `yarn build` — Compile assets
--   `yarn lint` — Lint stylesheets & javascripts
--   `yarn lint:css` — Lint stylesheets
--   `yarn lint:js` — Lint javascripts
+- `yarn dev` — Start dev server
+- `yarn build` — Compile assets
+- `yarn lint` — Lint stylesheets & javascripts
+- `yarn lint:css` — Lint stylesheets
+- `yarn lint:js` — Lint javascripts
 
-### Hot reload mode
+### Hot Module Replacement
 
 #### Project Side
+
 Add the following variables in your project `.env`
 
 ```sh
-# If true hot reload is active
+# If true hot reload is active.
+# If not specified or set to false, and if the `public/manifest.json` file is missing, HMR is automatically enabled.
 HMR_ENABLED=true
 
 # Endpoint where the bundler serve your assets
@@ -91,10 +96,12 @@ HMR_ENTRYPOINT=http://example.com:3000
 ```
 
 #### Theme side
-For advanced dev server configuration, copy `.env.example` according to [Vite naming convention and loading order](https://vitejs.dev/guide/env-and-mode.html#env-files) and update variables
+
+For advanced dev server configuration, copy `.env.example` according
+to [Vite naming convention and loading order](https://vitejs.dev/guide/env-and-mode.html#env-files) and update variables
 
 ## Documentation
 
--   [Sage documentation](https://roots.io/sage/docs/)
--   [Controller documentation](https://github.com/soberwp/controller#usage)
--   [Vite](https://vitejs.dev/guide/)
+- [Sage documentation](https://roots.io/sage/docs/)
+- [Controller documentation](https://github.com/soberwp/controller#usage)
+- [Vite](https://vitejs.dev/guide/)
