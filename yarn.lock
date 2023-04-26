@@ -244,10 +244,10 @@
   resolved "https://registry.yarnpkg.com/@ravorona/eslint-config/-/eslint-config-4.1.2.tgz#c3606d60248c87974f243c4f8718c94a0c59745b"
   integrity sha512-0g6n7Tm5mgJMdBSYvMT8gM2RZ7p9gkXP56+jl8gMqo+tepWlfH2Lrgr2+RakN0rYpOEoIsb/rOFzGx/AORnfEA==
 
-"@ravorona/stylelint-config@^2.2.5":
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/@ravorona/stylelint-config/-/stylelint-config-2.2.5.tgz#0de227e302451d0427a87a2af38af43a5eddd242"
-  integrity sha512-/vXFH61zOPgv/6RyD103BIg5FeUhmQeJLSLn42mt42ZityNJ7p0jJXbGV3uIau8OmeXAu1skZmihii+fipVykg==
+"@ravorona/stylelint-config@^2.2.6":
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@ravorona/stylelint-config/-/stylelint-config-2.2.6.tgz#3c291c4155f5cdacd380ee6d8e5ead490bfbc26b"
+  integrity sha512-D/runBSWgAt6A/B19MpQWqYSLo9X7LAsvCs2/XO8YdmachTMLBeql+YU/ubhp5lVBzY+c52lsWh6/2xdTC3uWw==
 
 "@types/fs-extra@^8.0.1":
   version "8.1.2"
