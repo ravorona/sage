@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright (c) 2023 яαvoroηα
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy of
+ *  this software and associated documentation files (the "Software"), to deal in
+ *  the Software without restriction, including without limitation the rights to
+ *  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ *  the Software, and to permit persons to whom the Software is furnished to do so,
+ *  subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ *  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ *  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ *  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
 /**
  * Theme setup.
@@ -57,6 +77,7 @@ add_action('enqueue_block_editor_assets', function (): void {
 add_action('after_setup_theme', function (): void {
     /**
      * Enable features from the Soil plugin if activated.
+     *
      * @link https://roots.io/plugins/soil/
      */
     add_theme_support('soil', [
@@ -75,6 +96,7 @@ add_action('after_setup_theme', function (): void {
 
     /**
      * Register the navigation menus.
+     *
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
      */
     register_nav_menus([
@@ -83,30 +105,35 @@ add_action('after_setup_theme', function (): void {
 
     /**
      * Disable the default block patterns.
+     *
      * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-the-default-block-patterns
      */
     remove_theme_support('core-block-patterns');
 
     /**
      * Enable plugins to manage the document title.
+     *
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#title-tag
      */
     add_theme_support('title-tag');
 
     /**
      * Enable post thumbnail support.
+     *
      * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
      */
     add_theme_support('post-thumbnails');
 
     /**
      * Enable responsive embed support.
+     *
      * @link https://wordpress.org/gutenberg/handbook/designers-developers/developers/themes/theme-support/#responsive-embedded-content
      */
     add_theme_support('responsive-embeds');
 
     /**
      * Enable HTML5 markup support.
+     *
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
      */
     add_theme_support('html5', [
@@ -121,12 +148,14 @@ add_action('after_setup_theme', function (): void {
 
     /**
      * Enable selective refresh for widgets in customizer.
+     *
      * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
      */
     add_theme_support('customize-selective-refresh-widgets');
 
     /**
      * Register custom image sizes
+     *
      * @see app/medias.php
      */
     set_image_sizes();
@@ -146,16 +175,15 @@ add_action('widgets_init', function () {
     ];
 
     register_sidebar([
-        'name' => __('Primary', 'sage'),
-        'id' => 'sidebar-primary'
-    ] + $config);
+            'name' => __('Primary', 'sage'),
+            'id' => 'sidebar-primary'
+        ] + $config);
 
     register_sidebar([
-        'name' => __('Footer', 'sage'),
-        'id' => 'sidebar-footer'
-    ] + $config);
+            'name' => __('Footer', 'sage'),
+            'id' => 'sidebar-footer'
+        ] + $config);
 });
-
 
 /**
  * Overrides
@@ -163,6 +191,7 @@ add_action('widgets_init', function () {
 add_action('init', function () {
     /**
      * Cleanup global styles
+     *
      * @link https://github.com/WordPress/gutenberg/issues/36834
      */
     remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
