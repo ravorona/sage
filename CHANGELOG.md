@@ -1,3 +1,10 @@
+### [4.1.1](https://github.com/ravorona/sage/compare/4.1.0...4.1.1) (2023-04-26)
+
+
+### Bug Fixes
+
+* Applying phpcs rules ([4981c76](https://github.com/ravorona/sage/commit/4981c76f3ee254a718c03d7c5076a9c1bb3cadef))
+
 ## [4.1.0](https://github.com/ravorona/sage/compare/4.0.4...4.1.0) (2023-04-26)
 
 
