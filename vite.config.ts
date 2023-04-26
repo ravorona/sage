@@ -26,7 +26,9 @@ import { ConfigEnv, defineConfig, loadEnv, UserConfigExport } from 'vite'
 const assets = {
     base: 'resources',
     scripts: 'resources/scripts',
-    styles: 'resources/styles'
+    styles: 'resources/styles',
+    images: 'resources/images',
+    fonts: 'resources/fonts'
 }
 
 const formatName = (name: string): string => name.replace(`${assets.scripts}/`, '').replace(/.css$/gm, '')
@@ -37,11 +39,14 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     const config: UserConfigExport = {
         appType: 'custom',
         publicDir: false,
+        base: './',
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, assets.base),
                 '@scripts': path.resolve(__dirname, assets.scripts),
-                '@styles': path.resolve(__dirname, assets.styles)
+                '@styles': path.resolve(__dirname, assets.styles),
+                '@fonts': path.resolve(__dirname, assets.fonts),
+                '@images': path.resolve(__dirname, assets.images)
             }
         },
         css: {
@@ -126,16 +131,33 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     }
 
     if (dev) {
+        let host = 'localhost'
+        let port = 5173
+        const protocol = 'http'
+        const https = !!(devServerConfig.HMR_HTTPS_KEY && devServerConfig.HMR_HTTPS_CERT)
+
+        devServerConfig.HMR_HOST && (host = devServerConfig.HMR_HOST)
+        devServerConfig.HMR_PORT && (port = parseInt(devServerConfig.HMR_PORT))
+
+        https &&
+            (config.server.https = {
+                key: devServerConfig.HMR_HTTPS_KEY,
+                cert: devServerConfig.HMR_HTTPS_CERT
+            })
+
         config.server = {
-            host: '0.0.0.0',
+            host,
+            port,
+            https,
             strictPort: true,
+            origin: `${protocol}://${host}:${port}`,
             fs: {
                 strict: true,
                 allow: ['node_modules', assets.base]
             }
 
             /***
-             * For windows user with files system watching not working
+             * For Windows user with files system watching not working
              * https://vitejs.dev/config/server-options.html#server-watch
              */
 
@@ -146,15 +168,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
             }
             */
         }
-
-        devServerConfig.HMR_HOST && (config.server.host = devServerConfig.HMR_HOST)
-        devServerConfig.HMR_PORT && (config.server.port = parseInt(devServerConfig.HMR_PORT))
-        devServerConfig.HMR_HTTPS_KEY &&
-            devServerConfig.HMR_HTTPS_CERT &&
-            (config.server.https = {
-                key: devServerConfig.HMR_HTTPS_KEY,
-                cert: devServerConfig.HMR_HTTPS_CERT
-            })
     }
 
     return config

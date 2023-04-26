@@ -32,7 +32,7 @@ namespace App;
  */
 function hmr_enabled(): bool
 {
-    return env('HMR_ENABLED') ?: false;
+    return env('HMR_ENABLED') ?: !file_exists(get_theme_file_path('/public/manifest.json'));
 }
 
 /**
@@ -43,7 +43,7 @@ function hmr_enabled(): bool
  */
 function hmr_assets(string $asset): string
 {
-    $entrypoint = env('HMR_ENTRYPOINT');
+    $entrypoint = env('HMR_ENTRYPOINT') ?: 'http://localhost:5173';
 
     return $entrypoint ? "{$entrypoint}/{$asset}" : asset($asset);
 }
