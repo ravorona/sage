@@ -92,7 +92,7 @@ Add the following variables in your project `.env`
 HMR_ENABLED=true
 
 # Endpoint where the bundler serve your assets
-HMR_ENTRYPOINT=http://example.com:3000
+HMR_ENTRYPOINT=http://localhost:5173
 ```
 
 #### Theme side
