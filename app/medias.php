@@ -147,14 +147,13 @@ function get_attachment(string $id, string $size, string $format = null): string
  * @return string
  */
 function get_media(
-    string  $id,
-    string  $type = 'standard',
-    bool    $lazy = true,
+    string $id,
+    string $type = 'standard',
+    bool $lazy = true,
     ?string $alt = null,
-    ?array  $attributes = null,
+    ?array $attributes = null,
     ?string $caption = null
-): string
-{
+): string {
     $src = wp_get_attachment_image_src($id, 'full');
 
     if ($src) {
