@@ -1,3 +1,10 @@
+## [4.2.1](https://github.com/ravorona/sage/compare/4.2.0...4.2.1) (2024-04-03)
+
+
+### Features
+
+* Sage 10.8.2 ([2ad4ca4](https://github.com/ravorona/sage/commit/2ad4ca4cb55d116905ab763469fd69f10c1bf434))
+
 ## [4.2.0](https://github.com/ravorona/sage/compare/4.1.1...4.2.0) (2023-04-26)
 
 
