@@ -1,5 +1,5 @@
 {
-    "printWidth": 120,
+    "printWidth": 400,
     "useTabs": false,
     "tabWidth": 4,
     "singleQuote": true,
@@ -9,7 +9,9 @@
     "semi": false,
     "overrides": [
         {
-            "files": ["*.yml"],
+            "files": [
+                "*.yml"
+            ],
             "options": {
                 "singleQuote": false
             }
