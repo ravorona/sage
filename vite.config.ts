@@ -1,30 +1,31 @@
 /*
- * Copyright (c) 2023 яαvoroηα
+ * Copyright (c) 2023-2024 яαvoroηα
  *
- *  Permission is hereby granted, free of charge, to any person obtaining a copy of
- *  this software and associated documentation files (the "Software"), to deal in
- *  the Software without restriction, including without limitation the rights to
- *  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
- *  the Software, and to permit persons to whom the Software is furnished to do so,
- *  subject to the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
  *
- *  The above copyright notice and this permission notice shall be included in all
- *  copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  *
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- *  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- *  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- *  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 import { unlink } from 'fs'
 import * as path from 'path'
 import copy from 'rollup-plugin-copy'
-import outputManifest, { KeyValueDecorator, OutputManifestParam } from 'rollup-plugin-output-manifest'
+import pluginManifest, { KeyValueDecorator, OutputManifestParam } from 'rollup-plugin-output-manifest'
 import { ConfigEnv, defineConfig, loadEnv, UserConfigExport } from 'vite'
 
+const { default: outputManifest } = pluginManifest as any
 const publicDir = 'public'
 const manifestFile = 'manifest.json'
 const assets = {
@@ -66,22 +67,18 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                     main: path.resolve(__dirname, `${assets.scripts}/main.ts`),
                     editor: path.resolve(__dirname, `${assets.scripts}/editor.ts`)
                 },
-                output: {
-                    sourcemap: true
-                },
                 plugins: [
                     outputManifest({
                         fileName: manifestFile,
-                        generate:
-                            (keyValueDecorator: KeyValueDecorator, seed: object, opt: OutputManifestParam) => chunks =>
-                                chunks.reduce((manifest, { name, fileName }) => {
-                                    return name
-                                        ? {
-                                              ...manifest,
-                                              ...keyValueDecorator(formatName(name), fileName, opt)
-                                          }
-                                        : manifest
-                                }, seed)
+                        generate: (keyValueDecorator: KeyValueDecorator, seed: object, opt: OutputManifestParam) => chunks =>
+                            chunks.reduce((manifest, { name, fileName }) => {
+                                return name
+                                    ? {
+                                          ...manifest,
+                                          ...keyValueDecorator(formatName(name), fileName, opt)
+                                      }
+                                    : manifest
+                            }, seed)
                     }),
                     outputManifest({
                         fileName: 'entrypoints.json',
@@ -90,15 +87,14 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                             chunks.reduce((manifest, { name, fileName }) => {
                                 const formatedName = name && formatName(name)
                                 const output = {}
-                                const js =
-                                    formatedName && manifest[formatedName]?.js?.length ? manifest[formatedName].js : []
-                                const css =
-                                    formatedName && manifest[formatedName]?.css?.length
-                                        ? manifest[formatedName].css
-                                        : []
-                                const dependencies =
-                                    formatedName && manifest[formatedName] ? manifest[formatedName].dependencies : []
-                                const inject = { js, css, dependencies }
+                                const js: Array<string> = formatedName && manifest[formatedName]?.js?.length ? manifest[formatedName].js : []
+                                const css: Array<string> = formatedName && manifest[formatedName]?.css?.length ? manifest[formatedName].css : []
+                                const dependencies: Array<string> = formatedName && manifest[formatedName] ? manifest[formatedName].dependencies : []
+                                const inject = {
+                                    js,
+                                    css,
+                                    dependencies
+                                }
 
                                 fileName.match(/.js$/gm) && js.push(fileName)
                                 fileName.match(/.css$/gm) && css.push(fileName)
@@ -140,9 +136,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         const protocol = 'http'
         const https = !!(devServerConfig.HMR_HTTPS_KEY && devServerConfig.HMR_HTTPS_CERT)
 
-        unlink(`${publicDir}/${manifestFile}`, error =>
-            console.log(`🧹 Wipe ${manifestFile} :`, error ? `No ${manifestFile} in the public directory` : '✅')
-        )
+        unlink(`${publicDir}/${manifestFile}`, error => console.log(`🧹 Wipe ${manifestFile} :`, error ? `No ${manifestFile} in the public directory` : '✅'))
 
         devServerConfig.HMR_HOST && (host = devServerConfig.HMR_HOST)
         devServerConfig.HMR_PORT && (port = parseInt(devServerConfig.HMR_PORT))
@@ -156,7 +150,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         config.server = {
             host,
             port,
-            https,
             strictPort: true,
             origin: `${protocol}://${host}:${port}`,
             fs: {
