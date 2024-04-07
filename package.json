@@ -1,6 +1,6 @@
 {
   "name": "@ravorona/sage",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "Wordpress theme based on Sage starter theme using Vite",
   "license": "MIT",
   "type": "module",
