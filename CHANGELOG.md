@@ -1,3 +1,13 @@
+## [4.3.1](https://github.com/ravorona/sage/compare/4.2.0...4.3.1) (2024-04-07)
+
+
+### Features
+
+* Dependencies update ([137f3f9](https://github.com/ravorona/sage/commit/137f3f9d92c90a9e04a864f336282af6b98df1fc))
+* Sage 10.8.2 ([2ad4ca4](https://github.com/ravorona/sage/commit/2ad4ca4cb55d116905ab763469fd69f10c1bf434))
+* Set gitattributes ([832506d](https://github.com/ravorona/sage/commit/832506d7b066745d50a2a20d1a7e39c3b8c6f711))
+* Update eslint and linter rules ([664509d](https://github.com/ravorona/sage/commit/664509dbb3ccce34797e7dfad7f5d5ea32861ad0))
+
 ## [4.3.0](https://github.com/ravorona/sage/compare/4.2.0...4.3.0) (2024-04-07)
 
 
