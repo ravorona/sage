@@ -23,7 +23,9 @@ perf = { changelog_title = "", omit_from_changelog = true }
 
 [changelog]
 path = "CHANGELOG.md"
-authors = []
+authors = [
+    { username = "ravorona", signature = "яαvoroηα" }
+]
 
 [bump_profiles]
 
