@@ -3,26 +3,43 @@ ignore_merge_commits = true
 disable_changelog = false
 disable_bump_commit = false
 generate_mono_repository_global_tag = true
-branch_whitelist = []
 skip_ci = "[skip ci]"
 skip_untracked = false
-pre_bump_hooks = []
-post_bump_hooks = []
+pre_bump_hooks = [
+    "composer lint",
+    "yarn lint",
+    "echo Bump {{version}}"
+]
+post_bump_hooks = [
+    "echo {{latest}} bumped to {{version}}"
+]
 pre_package_bump_hooks = []
 post_package_bump_hooks = []
+branch_whitelist = ["main", "release/**"]
 
-[git_hooks]
+[git_hooks.commit-msg]
+script = """#!/bin/sh
+set -e
+cog verify --file $1
+cog check
+"""
 
 [commit_types]
+chore = { changelog_title = "📦 Misc", omit_from_changelog = true }
 feat = { changelog_title = "📦 Features" }
 fix = { changelog_title = "🐞 Bug fixes" }
 hotfix = { changelog_title = "🔥 Bug fixes" }
-chore = { changelog_title = "", omit_from_changelog = true }
-ci = { changelog_title = "", omit_from_changelog = true }
-perf = { changelog_title = "", omit_from_changelog = true }
+ci = { changelog_title = "🚀 Integrations & deployments" }
+perf = { changelog_title = "🏎️ Performances", omit_from_changelog = true }
+docs = { changelog_title = "📔 Documentations", omit_from_changelog = true }
+style = { changelog_title = "👘 Styles", omit_from_changelog = true }
 
 [changelog]
+template = "remote"
 path = "CHANGELOG.md"
+remote = "github.com"
+repository = "sage"
+owner = "ravorona"
 authors = [
     { username = "ravorona", signature = "яαvoroηα" }
 ]
