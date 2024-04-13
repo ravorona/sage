@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [4.4.1](https://github.com/ravorona/sage/compare/7f62b7ff6184690c1cab5a41d0748782ce3c16ca..4.4.1) - 2024-04-13
+#### 🚀 Integrations & deployments
+- Cog branch whitelist update - ([7f62b7f](https://github.com/ravorona/sage/commit/7f62b7ff6184690c1cab5a41d0748782ce3c16ca)) - [@ravorona](https://github.com/ravorona)
+
+- - -
+
 ## [4.4.0](https://github.com/ravorona/sage/compare/1e1dc9f5ba537db61e9c49fbcc44c1a6367c5238..4.4.0) - 2024-04-13
 #### 📦 Features
 - Wordpress theme boilerplate with Sage 10 - ([1e1dc9f](https://github.com/ravorona/sage/commit/1e1dc9f5ba537db61e9c49fbcc44c1a6367c5238)) - [@ravorona](https://github.com/ravorona)
