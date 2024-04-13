@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "@ravorona/stylelint-config",
+    "stylelint-config-recommended-scss"
+  ],
+  "customSyntax": "postcss-scss",
+  "rules": {
+    "import-notation": "string"
+  }
+}
