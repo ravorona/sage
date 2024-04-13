@@ -15,7 +15,7 @@ post_bump_hooks = [
 ]
 pre_package_bump_hooks = []
 post_package_bump_hooks = []
-branch_whitelist = ["main", "release/**"]
+branch_whitelist = ["main"]
 
 [git_hooks.commit-msg]
 script = """#!/bin/sh
